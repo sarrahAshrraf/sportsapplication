@@ -25,6 +25,7 @@
 		E7E3B9C52BFB70180025CC67 /* Sports.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3B9C42BFB70180025CC67 /* Sports.swift */; };
 		E7E3B9C72BFB70230025CC67 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3B9C62BFB70230025CC67 /* Response.swift */; };
 		E7E3B9C92BFB70410025CC67 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3B9C82BFB70410025CC67 /* Event.swift */; };
+		E7E3B9CD2BFB722F0025CC67 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3B9CC2BFB722F0025CC67 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		E7E3B9C42BFB70180025CC67 /* Sports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sports.swift; sourceTree = "<group>"; };
 		E7E3B9C62BFB70230025CC67 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		E7E3B9C82BFB70410025CC67 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		E7E3B9CC2BFB722F0025CC67 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,8 @@
 		E7E3B9BE2BFB6F300025CC67 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E7E3B9CB2BFB721C0025CC67 /* view */,
+				E7E3B9CA2BFB72150025CC67 /* viewModel */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -239,6 +243,21 @@
 			children = (
 			);
 			path = TeamDetails;
+			sourceTree = "<group>";
+		};
+		E7E3B9CA2BFB72150025CC67 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E7E3B9CC2BFB722F0025CC67 /* HomeViewModel.swift */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		E7E3B9CB2BFB721C0025CC67 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -483,6 +502,7 @@
 				E7E3B9C72BFB70230025CC67 /* Response.swift in Sources */,
 				E7E3B9C92BFB70410025CC67 /* Event.swift in Sources */,
 				E7E3B9C52BFB70180025CC67 /* Sports.swift in Sources */,
+				E7E3B9CD2BFB722F0025CC67 /* HomeViewModel.swift in Sources */,
 				E7E3B98A2BFB68C10025CC67 /* ViewController.swift in Sources */,
 				E7E3B9862BFB68C10025CC67 /* AppDelegate.swift in Sources */,
 				E7E3B9902BFB68C10025CC67 /* SportssApp.xcdatamodeld in Sources */,
