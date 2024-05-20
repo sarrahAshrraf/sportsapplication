@@ -14,10 +14,8 @@ class SportsViewController: UIViewController,UICollectionViewDelegate , UICollec
 
    
     @IBOutlet weak var homeCollectionView: UICollectionView!
+    
     var viewModel: HomeViewModel?
-//        let images = ["football", "basket", "Cricket2", "Tennis"]
-//
-//        let texts = ["Football", "Basketball", "Cricket", "Tennis"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
