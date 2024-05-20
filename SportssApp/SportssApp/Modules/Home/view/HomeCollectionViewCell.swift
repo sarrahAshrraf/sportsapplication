@@ -9,4 +9,11 @@ import UIKit
 
 class HomeCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var homeLabel: UILabel!
+    
+    @IBOutlet weak var homeSportsImg: UIImageView!
+    func configue(with sport: Sport){
+        homeSportsImg.image = UIImage(named: sport.sportImg)
+        homeLabel.text = sport.sportName
+    }
 }

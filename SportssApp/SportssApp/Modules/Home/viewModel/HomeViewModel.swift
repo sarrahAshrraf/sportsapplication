@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+class HomeViewModel{
+    
+    var sports = [
+        Sport(sportImg: "cricet", sportName: "Criket"),
+        Sport(sportImg: "cricet", sportName: "Criket"),
+        Sport(sportImg: "cricet", sportName: "Criket"),
+        Sport(sportImg: "cricet", sportName: "Criket")
+
+
+    ]
+}
