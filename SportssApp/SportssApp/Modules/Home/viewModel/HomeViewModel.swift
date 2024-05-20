@@ -10,10 +10,10 @@ import Foundation
 class HomeViewModel{
     
     var sports = [
-        Sport(sportImg: "cricet", sportName: "Criket"),
-        Sport(sportImg: "cricet", sportName: "Criket"),
-        Sport(sportImg: "cricet", sportName: "Criket"),
-        Sport(sportImg: "cricet", sportName: "Criket")
+        Sport(sportImg: "football", sportName: "Football"),
+        Sport(sportImg: "basketball", sportName: "Basketball"),
+        Sport(sportImg: "tennis1", sportName: "Tennis"),
+        Sport(sportImg: "cricet1", sportName: "Criket")
 
 
     ]
