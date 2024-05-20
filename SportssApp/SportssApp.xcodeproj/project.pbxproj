@@ -31,6 +31,8 @@
 		E7E3B9CF2BFB7B600025CC67 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3B9CE2BFB7B600025CC67 /* FavoriteViewController.swift */; };
 		E7E3B9D32BFB7B840025CC67 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3B9D22BFB7B840025CC67 /* FavoriteViewModel.swift */; };
 		E7E3B9D52BFB7BA60025CC67 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3B9D42BFB7BA60025CC67 /* test.swift */; };
+		E7E3B9DA2BFB876A0025CC67 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3B9D92BFB876A0025CC67 /* NetworkManager.swift */; };
+		E7E3B9DC2BFB889F0025CC67 /* ScreensStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7E3B9DB2BFB889F0025CC67 /* ScreensStoryBoard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		E7E3B9CE2BFB7B600025CC67 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		E7E3B9D22BFB7B840025CC67 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		E7E3B9D42BFB7BA60025CC67 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		E7E3B9D92BFB876A0025CC67 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E7E3B9DB2BFB889F0025CC67 /* ScreensStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScreensStoryBoard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,7 @@
 		E7E3B9842BFB68C10025CC67 /* SportssApp */ = {
 			isa = PBXGroup;
 			children = (
+				E7E3B9D62BFB87440025CC67 /* Servies */,
 				E7E3B9BD2BFB6F2A0025CC67 /* Modules */,
 				E7E3B9B82BFB68D50025CC67 /* Models */,
 				E7E3B9852BFB68C10025CC67 /* AppDelegate.swift */,
@@ -173,6 +178,7 @@
 				E7E3B9932BFB68C30025CC67 /* LaunchScreen.storyboard */,
 				E7E3B9962BFB68C30025CC67 /* Info.plist */,
 				E7E3B98E2BFB68C10025CC67 /* SportssApp.xcdatamodeld */,
+				E7E3B9DB2BFB889F0025CC67 /* ScreensStoryBoard.storyboard */,
 			);
 			path = SportssApp;
 			sourceTree = "<group>";
@@ -291,6 +297,30 @@
 			path = viewModel;
 			sourceTree = "<group>";
 		};
+		E7E3B9D62BFB87440025CC67 /* Servies */ = {
+			isa = PBXGroup;
+			children = (
+				E7E3B9D82BFB875B0025CC67 /* Storage */,
+				E7E3B9D72BFB87560025CC67 /* Networking */,
+			);
+			path = Servies;
+			sourceTree = "<group>";
+		};
+		E7E3B9D72BFB87560025CC67 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				E7E3B9D92BFB876A0025CC67 /* NetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		E7E3B9D82BFB875B0025CC67 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -403,6 +433,7 @@
 				E7E3B9952BFB68C30025CC67 /* LaunchScreen.storyboard in Resources */,
 				E7E3B9922BFB68C30025CC67 /* Assets.xcassets in Resources */,
 				E7E3B98D2BFB68C10025CC67 /* Main.storyboard in Resources */,
+				E7E3B9DC2BFB889F0025CC67 /* ScreensStoryBoard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +565,7 @@
 				E7E3B9C92BFB70410025CC67 /* Event.swift in Sources */,
 				E7E3B9C52BFB70180025CC67 /* Sports.swift in Sources */,
 				E7E3B9CD2BFB722F0025CC67 /* HomeViewModel.swift in Sources */,
+				E7E3B9DA2BFB876A0025CC67 /* NetworkManager.swift in Sources */,
 				E7E3B98A2BFB68C10025CC67 /* ViewController.swift in Sources */,
 				E7E3B9862BFB68C10025CC67 /* AppDelegate.swift in Sources */,
 				04B6BD4A2BFB7A9000D79563 /* HomeCollectionViewCell.swift in Sources */,
