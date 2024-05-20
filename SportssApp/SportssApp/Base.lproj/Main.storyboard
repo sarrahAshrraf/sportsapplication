@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xj5-zK-wtW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xj5-zK-wtW">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,8 +16,64 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tBm-YV-kGN">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HmV-zk-sEz">
+                                    <size key="itemSize" width="277" height="360"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeCell" id="Zgh-CD-CZB">
+                                        <rect key="frame" x="58" y="0.0" width="277" height="360"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Zxc-OT-yLw">
+                                            <rect key="frame" x="0.0" y="0.0" width="277" height="360"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EdK-Pg-NcJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="277" height="303"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="300" id="daH-BD-OYX"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYj-Cb-zeO">
+                                                    <rect key="frame" x="8" y="311" width="261" height="41"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="41" id="cUw-d5-3bv"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="UYj-Cb-zeO" secondAttribute="bottom" constant="8" id="BlK-kL-FLw"/>
+                                                <constraint firstItem="UYj-Cb-zeO" firstAttribute="top" secondItem="EdK-Pg-NcJ" secondAttribute="bottom" constant="8" id="L2P-hM-ag1"/>
+                                                <constraint firstItem="EdK-Pg-NcJ" firstAttribute="leading" secondItem="Zxc-OT-yLw" secondAttribute="leading" id="Nvp-aK-5Gi"/>
+                                                <constraint firstAttribute="trailing" secondItem="UYj-Cb-zeO" secondAttribute="trailing" constant="8" id="OAA-FX-tOE"/>
+                                                <constraint firstItem="UYj-Cb-zeO" firstAttribute="leading" secondItem="Zxc-OT-yLw" secondAttribute="leading" constant="8" id="Uvr-d2-mSr"/>
+                                                <constraint firstItem="UYj-Cb-zeO" firstAttribute="top" secondItem="EdK-Pg-NcJ" secondAttribute="bottom" constant="8" id="gIJ-8B-l2b"/>
+                                                <constraint firstAttribute="trailing" secondItem="EdK-Pg-NcJ" secondAttribute="trailing" id="hKr-sd-FHY"/>
+                                                <constraint firstItem="EdK-Pg-NcJ" firstAttribute="top" secondItem="Zxc-OT-yLw" secondAttribute="top" id="zMc-GQ-4X5"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="277" height="360"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tBm-YV-kGN" secondAttribute="trailing" id="Dlf-8Y-Gx4"/>
+                            <constraint firstItem="tBm-YV-kGN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Glu-nv-oni"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tBm-YV-kGN" secondAttribute="bottom" id="YIa-nl-6nU"/>
+                            <constraint firstItem="tBm-YV-kGN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="oqo-fd-xqJ"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Sports" image="sportscourt.fill" catalog="system" id="Byk-zK-4ns"/>
                     <navigationItem key="navigationItem" id="Tv1-Dg-nWV"/>
@@ -35,10 +92,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="7Nt-f2-uPb">
-                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="50" width="393" height="47.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Nt-f2-uPb" id="WBM-HH-hmE">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="47.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -79,6 +136,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Qow-OW-8Qr"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jEy-fa-mgK">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
