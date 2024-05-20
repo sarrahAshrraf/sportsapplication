@@ -165,7 +165,6 @@
 				E7E3B9932BFB68C30025CC67 /* LaunchScreen.storyboard */,
 				E7E3B9962BFB68C30025CC67 /* Info.plist */,
 				E7E3B98E2BFB68C10025CC67 /* SportssApp.xcdatamodeld */,
-				04B6BD492BFB7A9000D79563 /* HomeCollectionViewCell.swift */,
 			);
 			path = SportssApp;
 			sourceTree = "<group>";
@@ -259,6 +258,7 @@
 		E7E3B9CB2BFB721C0025CC67 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				04B6BD492BFB7A9000D79563 /* HomeCollectionViewCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
