@@ -1,0 +1,32 @@
+# Uncomment the next line to define a global platform for your project
+ platform :ios, '17.0'
+
+target 'SportssApp' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for SportssApp
+
+pod 'Alamofire', '~> 5.8.0'
+pod 'ReachabilitySwift'
+pod 'Kingfisher'
+
+post_install do |installer|
+    installer.generated_projects.each do |project|
+        project.targets.each do |target|
+            target.build_configurations.each do |config|
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+            end
+        end
+    end
+end
+  target 'SportssAppTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'SportssAppUITests' do
+    # Pods for testing
+  end
+
+end
