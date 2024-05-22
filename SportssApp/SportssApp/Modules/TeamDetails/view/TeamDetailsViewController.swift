@@ -57,7 +57,10 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate , UITabl
         if let player = viewModel.teams?.players?[indexPath.row]{
             
             cell.playerNameLabl.text = player.player_name
-            
+            cell.playerAgeLabel.text = player.player_age
+            cell.playerNumberLabel.text = player.player_number
+            cell.playerPositionLabel.text = player.player_type
+
             cell.playerImg.kf.setImage(with: URL(string: player.player_image ?? "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/EA_Sports_monochrome_logo.svg/2048px-EA_Sports_monochrome_logo.svg.png"))
         }
         
