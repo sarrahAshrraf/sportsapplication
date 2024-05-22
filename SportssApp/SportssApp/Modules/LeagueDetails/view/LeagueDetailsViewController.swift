@@ -7,13 +7,13 @@
 
 import UIKit
 
-class LeagueDetailsViewController: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-    
-
-
-}
+//class LeagueDetailsViewController: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource {
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//    }
+//    
+//
+//
+//}

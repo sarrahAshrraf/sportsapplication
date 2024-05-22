@@ -95,31 +95,6 @@ struct Vars: Codable {
     let awayTeam: [String]
 }
 
-struct Lineups: Codable {
-    let homeTeam: Team
-    let awayTeam: Team
-}
-
-struct Team: Codable {
-    let startingLineups: [Player]
-    let substitutes: [Player]
-    let coaches: [Coach]
-    let missingPlayers: [String]
-}
-
-struct Player: Codable {
-    let player: String
-    let playerNumber: Int
-    let playerPosition: Int
-    let playerCountry: String?
-    let playerKey: String
-    let infoTime: String
-}
-
-struct Coach: Codable {
-    let coache: String
-    let coacheCountry: String?
-}
 
 struct Statistic: Codable {
     let type: String

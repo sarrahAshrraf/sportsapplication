@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xj5-zK-wtW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WWA-Bl-HoN">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
@@ -89,6 +89,81 @@
             </objects>
             <point key="canvasLocation" x="1982.4427480916029" y="-27.464788732394368"/>
         </scene>
+        <!--Team Details View Controller-->
+        <scene sceneID="Abd-4v-gwG">
+            <objects>
+                <viewController id="WWA-Bl-HoN" customClass="TeamDetailsViewController" customModule="SportssApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QqO-Fg-aww">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sDM-WU-8LM">
+                                <rect key="frame" x="10" y="69" width="373" height="759"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="51" translatesAutoresizingMaskIntoConstraints="NO" id="NxQ-WZ-nVo">
+                                        <rect key="frame" x="0.0" y="0.0" width="373" height="218"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="basket" translatesAutoresizingMaskIntoConstraints="NO" id="0Tg-LB-MHp">
+                                                <rect key="frame" x="0.0" y="44" width="160" height="130"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="160" id="0Dx-iE-V3Y"/>
+                                                    <constraint firstAttribute="height" constant="130" id="pAU-0u-SP1"/>
+                                                </constraints>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PPd-76-Dqu">
+                                                <rect key="frame" x="211" y="44" width="162" height="130"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Liverpool" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JrO-f4-xGg">
+                                                        <rect key="frame" x="0.0" y="0.0" width="162" height="62.666666666666664"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="J.Klopp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nQ-sJ-JeG">
+                                                        <rect key="frame" x="0.0" y="67.666666666666657" width="162" height="62.333333333333343"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="130" id="L9v-eq-Evj"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hAu-tt-lWI">
+                                        <rect key="frame" x="0.0" y="238" width="373" height="521"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="hAu-tt-lWI" secondAttribute="trailing" id="ENg-XH-TzM"/>
+                                    <constraint firstItem="hAu-tt-lWI" firstAttribute="leading" secondItem="sDM-WU-8LM" secondAttribute="leading" id="Teo-SN-aWs"/>
+                                    <constraint firstAttribute="bottom" secondItem="hAu-tt-lWI" secondAttribute="bottom" id="gVa-4b-QD7"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ukB-gz-P21"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ukB-gz-P21" firstAttribute="trailing" secondItem="sDM-WU-8LM" secondAttribute="trailing" constant="10" id="cb4-HG-HbE"/>
+                            <constraint firstItem="sDM-WU-8LM" firstAttribute="bottom" secondItem="ukB-gz-P21" secondAttribute="bottom" constant="10" id="crP-mW-O3f"/>
+                            <constraint firstItem="sDM-WU-8LM" firstAttribute="top" secondItem="ukB-gz-P21" secondAttribute="top" constant="10" id="ctI-HV-DYz"/>
+                            <constraint firstItem="sDM-WU-8LM" firstAttribute="leading" secondItem="ukB-gz-P21" secondAttribute="leading" constant="10" id="kB3-Cg-e6S"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="logoImg" destination="0Tg-LB-MHp" id="HMz-oa-NQB"/>
+                        <outlet property="playerNameLabel" destination="2nQ-sJ-JeG" id="z3S-T6-fgs"/>
+                        <outlet property="playersTableView" destination="hAu-tt-lWI" id="U8S-NJ-UPw"/>
+                        <outlet property="teamNameLabel" destination="JrO-f4-xGg" id="wUx-8Y-My4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w6t-1g-8qT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2700" y="-27.464788732394368"/>
+        </scene>
         <!--Favorites-->
         <scene sceneID="l9R-ne-0WK">
             <objects>
@@ -158,6 +233,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="basket" width="269" height="187"/>
         <image name="heart.circle.fill" catalog="system" width="128" height="123"/>
         <image name="sportscourt.fill" catalog="system" width="128" height="83"/>
         <systemColor name="systemBackgroundColor">
