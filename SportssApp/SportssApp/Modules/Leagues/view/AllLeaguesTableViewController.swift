@@ -48,7 +48,7 @@ class AllLeaguesTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath) as! LeagueCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LeagueCell", for: indexPath) as! LeagueCell
         if let league = viewModel.result?[indexPath.row] {
             cell.leagueLabel?.text = league.leagueName
             if let logoURL = league.leagueLogo, logoURL.hasSuffix(".png") {

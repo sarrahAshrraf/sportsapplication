@@ -51,6 +51,15 @@ extension SportsViewController: UICollectionViewDelegateFlowLayout{
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             return UIEdgeInsets(top: 1, left: 10, bottom: 1, right: 10)
         }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedSport = viewModel!.sports[indexPath.item]
+        
+        let leaguesVC = AllLeaguesTableViewController()
+        leaguesVC.sportName = selectedSport.sportName.lowercased()
+        print(selectedSport.sportName)
+        navigationController?.pushViewController(leaguesVC, animated: true)
+    }
 }
 
 
