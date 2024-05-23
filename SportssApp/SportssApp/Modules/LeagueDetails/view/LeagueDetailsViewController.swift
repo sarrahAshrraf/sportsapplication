@@ -26,30 +26,23 @@ class LeagueDetailsViewController: UIViewController , UICollectionViewDelegate, 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Hide the default back button
         self.navigationItem.hidesBackButton = true
         
-        // Set the title
         self.title = "League Details"
         
-        // Create the back button
         let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(backButtonTapped))
         
-        // Create the favorite button
-        let favoriteButton = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(favoriteButtonTapped))
+        let favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteButtonTapped))
         
-        // Add buttons to the navigation item
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.rightBarButtonItem = favoriteButton
         
-        // Add indicator
         indicator = UIActivityIndicatorView(style: .large)
         indicator.center = self.view.center
         self.view.addSubview(indicator)
         indicator.startAnimating()
     }
 
-    // Back button action
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
@@ -66,7 +59,9 @@ print("TAAApppppppepdkjdhgy78290-=1===1=1=1==1=1=")    }
         leaguesCollectionView.register(eventCell, forCellWithReuseIdentifier: "UpComingEventsCell")
         let teamCell = UINib(nibName: "TeamCell", bundle: nil)
         leaguesCollectionView.register(teamCell, forCellWithReuseIdentifier: "TeamCell")
-       
+        let headerNib = UINib(nibName: "HeaderCell", bundle: nil)
+            leaguesCollectionView.register(headerNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderCell")
+           
         viewModel = LeagueDetailsViewModel()
         
         fetchNetworkData()
@@ -80,8 +75,6 @@ print("TAAApppppppepdkjdhgy78290-=1===1=1=1==1=1=")    }
         
         print (sportName)
         print (leagueId)
-  //      print (E)
-
 
   //    viewModel.getUpcomingEvent(sportName: sportName, leagueId: "\(leagueId)", startDate: Constants.previousYear, endDate: Constants.currentDate, eventType: .latest)
 
@@ -185,6 +178,35 @@ extension LeagueDetailsViewController{
 
     return sectionCounter
   }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+           guard kind == UICollectionView.elementKindSectionHeader else {
+               fatalError("error in header")
+           }
+           
+           let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
+           
+           if viewModel.resultUpComingEvents?.count ?? 0 == 0 {
+               switch indexPath.section {
+               case 0:
+                   headerView.headerTitle.text = "Upcoming Events"
+               default:
+                   headerView.headerTitle.text = "Teams"
+               }
+           } else {
+               switch indexPath.section {
+               case 0:
+                   headerView.headerTitle.text = "Upcoming Events"
+               case 1:
+                   headerView.headerTitle.text = "Latest Events"
+               default:
+                   headerView.headerTitle.text = "Teams"
+               }
+           }
+           
+           return headerView
+       }
+       
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
@@ -213,23 +235,25 @@ extension LeagueDetailsViewController{
     cell.contentView.layer.borderColor = UIColor.systemGray2.cgColor
     cell.contentView.layer.cornerRadius = 16
   }
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        guard let upcomingEventsCount = viewModel.resultUpComingEvents?.count else { return }
-//        
-//        if (upcomingEventsCount == 0 && indexPath.section == 1) || (upcomingEventsCount != 0 && indexPath.section == 2) {
-//            
-//            guard let teamVC = storyboard?.instantiateViewController(identifier: "TeamVC") as? TeamDetailsTableViewController else {
-//                return
-//            }
-//            
-//            teamVC.sportName = sportName
-//            
-//            if let teamKey = viewModel.teams?[indexPath.row].team_key {
-//                teamVC.teamId = teamKey
-//                navigationController?.pushViewController(teamVC, animated: true)
-//            }
-//        }
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let upcomingEventsCount = viewModel.resultUpComingEvents?.count else { return }
+        
+        if (upcomingEventsCount == 0 && indexPath.section == 1) || (upcomingEventsCount != 0 && indexPath.section == 2) {
+            
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let teamVC = storyboard.instantiateViewController(identifier: "TeamVC") as? TeamDetailsViewController else {
+                return
+            }
+            
+            teamVC.sportName = sportName
+            
+            if let teamKey = viewModel.teams?[indexPath.row].team_key {
+                teamVC.teamId = teamKey
+                navigationController?.pushViewController(teamVC, animated: true)
+            }
+        }
+    }
 
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

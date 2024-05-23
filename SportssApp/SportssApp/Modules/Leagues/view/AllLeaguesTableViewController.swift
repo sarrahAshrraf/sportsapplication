@@ -88,16 +88,5 @@ class AllLeaguesTableViewController: UITableViewController {
         }
     }
 
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//        let storyboard = UIStoryboard(name: "ScreensStoryBoard", bundle: nil)
-//        let leagueDetailsVC = storyboard.instantiateViewController(withIdentifier: "leagueDetailsVC") as! LeagueDetailsViewController
-////        leagueDetailsVC.title = "Leagues Details"
-//        leagueDetailsVC.sportName = self.sportName
-//        leagueDetailsVC.leagueId = (viewModel.result?[indexPath.row].leagueKey)!
-//        leagueDetailsVC.leagueName = (viewModel.result?[indexPath.row].leagueName)!
-//        leagueDetailsVC.leagueImage = viewModel.result?[indexPath.row].leagueLogo ?? ""
-//        navigationController?.pushViewController(leagueDetailsVC, animated: true)
-//        
-//    }
+
 }

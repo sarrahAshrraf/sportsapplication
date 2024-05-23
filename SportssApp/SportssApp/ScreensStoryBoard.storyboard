@@ -23,31 +23,10 @@
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LbS-xf-Mtb">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
-                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="TkA-uM-Ufj" customClass="HeaderCell" customModule="SportssApp" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XlX-H9-pWV">
-                                            <rect key="frame" x="8" y="15" width="307" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="XlX-H9-pWV" firstAttribute="top" secondItem="TkA-uM-Ufj" secondAttribute="topMargin" constant="7" id="LYf-3C-DBO"/>
-                                        <constraint firstItem="XlX-H9-pWV" firstAttribute="leading" secondItem="TkA-uM-Ufj" secondAttribute="leadingMargin" id="Z4L-cy-3CG"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="XlX-H9-pWV" secondAttribute="trailing" constant="70" id="dzV-XC-Lb6"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="XlX-H9-pWV" secondAttribute="bottom" constant="6" id="qYs-As-7HP"/>
-                                    </constraints>
-                                    <connections>
-                                        <outlet property="headerTitle" destination="XlX-H9-pWV" id="b6f-cr-5WG"/>
-                                    </connections>
-                                </collectionReusableView>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>

@@ -43,7 +43,7 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate , UITabl
         
     }
     func requestData(){
-        viewModel.getTeamDetails(sportName: "football", teamId: "\(72)")
+        viewModel.getTeamDetails(sportName: sportName, teamId: "\(teamId)")
         
     }
     
@@ -63,10 +63,6 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate , UITabl
 
             cell.playerImg.kf.setImage(with: URL(string: player.player_image ?? "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/EA_Sports_monochrome_logo.svg/2048px-EA_Sports_monochrome_logo.svg.png"))
         }
-        
-        
-//        tableView.dequeueReusableCell(withIdentifier: "TeamDetailsTableViewCell", for: indexPath)
-//        cell.textLabel?.text = viewModel.teams?.players?[indexPath.row].player_name
         
         return cell
     }
