@@ -76,19 +76,28 @@ class AllLeaguesTableViewController: UITableViewController {
     //        webViewController.youtubeUrl = urlString
     //        self.navigationController?.pushViewController(webViewController, animated: true)
     //    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "ScreensStoryBoard", bundle: nil)
+        if let leagueDetailsVC = storyboard.instantiateViewController(withIdentifier: "leagueDetailsVC") as? LeagueDetailsViewController {
+            leagueDetailsVC.sportName = self.sportName
+            leagueDetailsVC.leagueId = viewModel.result?[indexPath.row].leagueKey ?? 0
+            leagueDetailsVC.leagueName = viewModel.result?[indexPath.row].leagueName ?? ""
+            leagueDetailsVC.leagueImage = viewModel.result?[indexPath.row].leagueLogo ?? ""
+            navigationController?.pushViewController(leagueDetailsVC, animated: true)
+        }
+    }
+
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//        let storyboard = UIStoryboard(name: "ScreensStoryBoard", bundle: nil)
 //        let leagueDetailsVC = storyboard.instantiateViewController(withIdentifier: "leagueDetailsVC") as! LeagueDetailsViewController
-//        leagueDetailsVC.title = "Leagues Details"
+////        leagueDetailsVC.title = "Leagues Details"
 //        leagueDetailsVC.sportName = self.sportName
 //        leagueDetailsVC.leagueId = (viewModel.result?[indexPath.row].leagueKey)!
 //        leagueDetailsVC.leagueName = (viewModel.result?[indexPath.row].leagueName)!
 //        leagueDetailsVC.leagueImage = viewModel.result?[indexPath.row].leagueLogo ?? ""
 //        navigationController?.pushViewController(leagueDetailsVC, animated: true)
-        //        let leagueDetailsVC = self.storyboard?.instantiateViewController(identifier: "LeaguDVC") as! DetailsOfLeagueViewController
-        
-        //        self.present(leagueDetailsVC, animated: true)
-        
-    }
+//        
+//    }
 }
