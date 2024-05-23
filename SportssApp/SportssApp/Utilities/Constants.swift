@@ -12,18 +12,44 @@ class Constants{
     
 }
 class Utilities {
-    func getCurrentDateFormatted() -> String {
+    
+    static func calculateCurrentDate() -> String{
+        let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let currentDate = Date()
-        return dateFormatter.string(from: currentDate)
+        
+        let startDate = dateFormatter.string(from: currentDate)
+        print("==========start Date")
+        print(startDate)
+        return startDate
     }
     
-   static func formatDate(_ date: Date) -> String {
+    static func calculateStartDate() -> String{
+        let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter.string(from: date)
+        let oneYearFromNow = Calendar.current.date(byAdding: .month, value: -2, to: currentDate)!
+        let startDate = dateFormatter.string(from: oneYearFromNow)
+        print("==========start Date")
+        print(startDate)
+        return startDate
     }
+    
+   static func calculateEndDate() -> String{
+        
+        let currentDate = Date()
+        let oneYearFromNow = Calendar.current.date(byAdding: .year, value: 1, to: currentDate)!
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let endDate = dateFormatter.string(from: oneYearFromNow)
+       print("===========end Date")
+
+       print(endDate)
+        return endDate
+        
+    }
+    
 
     
 }

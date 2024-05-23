@@ -21,7 +21,12 @@ class UpComingEventsCell: UICollectionViewCell {
         // Initialization code
     }
     func configure(with event: Event) {
-        scoreLabel.text = event.finalResult
+//        scoreLabel.text = event.finalResult
+        if event.finalResult == "-" {
+                    scoreLabel.text = "N/A"
+                } else {
+                    scoreLabel.text = event.finalResult
+                }
         if let leagueName = event.leagueName {
             self.leagueName.text = leagueName
            } else {
