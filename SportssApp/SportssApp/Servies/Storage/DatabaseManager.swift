@@ -9,7 +9,6 @@ import Foundation
 import CoreData
 import UIKit
 
-
 class DatabaseManager {
     static let shared = DatabaseManager()
     
@@ -62,28 +61,6 @@ class DatabaseManager {
         saveContext()
     }
     
-    func fetchLeagues() -> [LeagueEntity]? {
-        let context = persistentContainer.viewContext
-        let fetchRequest: NSFetchRequest<LeagueEntity> = LeagueEntity.fetchRequest()
-        do {
-            let leagues = try context.fetch(fetchRequest)
-            printFetchedLeagues(leagues: leagues)
-            return leagues
-        } catch {
-            print("Failed to fetch leagues: \(error)")
-            return nil
-        }
-    }
-    
-    private func printFetchedLeagues(leagues: [LeagueEntity]) {
-        for league in leagues {
-            print("League ID: \(league.leagueId)")
-            print("League Name: \(league.leagueName ?? "No name")")
-            print("League Image: \(league.leagueImg ?? "No image")")
-            print("Sport Name: \(league.sportName ?? "No sport name")")
-            print("---------")
-        }
-    }
     
     func deleteLeague(league: LeagueEntity) {
         let context = persistentContainer.viewContext

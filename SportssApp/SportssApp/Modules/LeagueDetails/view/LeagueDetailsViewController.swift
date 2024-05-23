@@ -47,8 +47,8 @@ class LeagueDetailsViewController: UIViewController , UICollectionViewDelegate, 
         navigationController?.popViewController(animated: true)
     }
 
-    // Favorite button action
     @objc func favoriteButtonTapped() {
+        viewModel.saveLeagueToDB(leagueId: leagueId, leagueName: leagueName, leagueImg: leagueImage, sportName: sportName)
 print("TAAApppppppepdkjdhgy78290-=1===1=1=1==1=1=")    }
 
     override func viewDidLoad() {
@@ -75,8 +75,6 @@ print("TAAApppppppepdkjdhgy78290-=1===1=1=1==1=1=")    }
         
         print (sportName)
         print (leagueId)
-
-  //    viewModel.getUpcomingEvent(sportName: sportName, leagueId: "\(leagueId)", startDate: Constants.previousYear, endDate: Constants.currentDate, eventType: .latest)
 
         viewModel.fetchTeamData( leagueID:"\(leagueId)", sportName: sportName)
         

@@ -11,3 +11,19 @@ class Constants{
        
     
 }
+class Utilities {
+    func getCurrentDateFormatted() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let currentDate = Date()
+        return dateFormatter.string(from: currentDate)
+    }
+    
+   static func formatDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.string(from: date)
+    }
+
+    
+}
