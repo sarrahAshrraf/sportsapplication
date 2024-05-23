@@ -12,7 +12,7 @@ class UpComingEventsCell: UICollectionViewCell {
     @IBOutlet weak var awayTeamImg: UIImageView!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var roundLabel: UILabel!
-    @IBOutlet weak var leagueName: UILabel!
+//    @IBOutlet weak var leagueName: UILabel!
     @IBOutlet weak var homeTeamName: UILabel!
     @IBOutlet weak var homeTeamImg: UIImageView!
     
@@ -21,17 +21,17 @@ class UpComingEventsCell: UICollectionViewCell {
         // Initialization code
     }
     func configure(with event: Event) {
-//        scoreLabel.text = event.finalResult
-        if event.finalResult == "-" {
-                    scoreLabel.text = "N/A"
-                } else {
-                    scoreLabel.text = event.finalResult
-                }
-        if let leagueName = event.leagueName {
-            self.leagueName.text = leagueName
-           } else {
-               leagueName.text = "Unknown League"
-           }
+        scoreLabel.text = "\(event.eventDay ?? "date")\n \(event.eventTime ?? "date")"
+//        if event.finalResult == "-" {
+//                    scoreLabel.text = "N/A"
+//                } else {
+//                    scoreLabel.text = event.finalResult
+//                }
+//        if let leagueName = event.leagueName {
+//            self.leagueName.text = leagueName
+//           } else {
+//               leagueName.text = "Unknown League"
+//           }
         roundLabel.text = event.leagueRound
         homeTeamName.text = event.eventHomeTeam
         awayTeamName.text = event.eventAwayTeam

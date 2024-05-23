@@ -58,6 +58,10 @@ print("TAAApppppppepd=============")
         leaguesCollectionView.delegate = self
         let eventCell = UINib(nibName: "UpComingEventsCell", bundle: nil)
         leaguesCollectionView.register(eventCell, forCellWithReuseIdentifier: "UpComingEventsCell")
+        
+        let latestEventCell = UINib(nibName: "LatestEventsCell", bundle: nil)
+        leaguesCollectionView.register(latestEventCell, forCellWithReuseIdentifier: "LatestEventsCell")
+        
         let teamCell = UINib(nibName: "TeamCell", bundle: nil)
         leaguesCollectionView.register(teamCell, forCellWithReuseIdentifier: "TeamCell")
         let headerNib = UINib(nibName: "HeaderCell", bundle: nil)
@@ -262,16 +266,18 @@ extension LeagueDetailsViewController{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
       let eventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpComingEventsCell", for: indexPath) as! UpComingEventsCell
+        let latestEventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventsCell", for: indexPath) as! LatestEventsCell
       let teamCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! TeamCell
 
       makeCellBorderRadius(cell: eventCell)
+        makeCellBorderRadius(cell: latestEventCell)
       makeCellBorderRadius(cell: teamCell)
 
       if viewModel.resultUpComingEvents?.count ?? 0 == 0{
         switch indexPath.section {
         case 0:
-          eventCell.configure(with:  (viewModel.latestEventResult?[indexPath.row])!)
-          return eventCell
+          latestEventCell.configure(with:  (viewModel.latestEventResult?[indexPath.row])!)
+          return latestEventCell
         default:
           teamCell.configure(with:  (viewModel.teams?[indexPath.row])!)
           return teamCell
@@ -282,8 +288,8 @@ extension LeagueDetailsViewController{
           eventCell.configure(with: (viewModel.resultUpComingEvents?[indexPath.row])!)
           return eventCell
         case 1:
-          eventCell.configure(with: (viewModel.latestEventResult?[indexPath.row])!)
-          return eventCell
+            latestEventCell.configure(with:  (viewModel.latestEventResult?[indexPath.row])!)
+          return latestEventCell
         default:
           teamCell.configure(with: (viewModel.teams?[indexPath.row])!)
           return teamCell
