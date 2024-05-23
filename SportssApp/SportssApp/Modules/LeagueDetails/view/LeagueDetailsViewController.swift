@@ -49,7 +49,8 @@ class LeagueDetailsViewController: UIViewController , UICollectionViewDelegate, 
 
     @objc func favoriteButtonTapped() {
         viewModel.saveLeagueToDB(leagueId: leagueId, leagueName: leagueName, leagueImg: leagueImage, sportName: sportName)
-print("TAAApppppppepdkjdhgy78290-=1===1=1=1==1=1=")    }
+print("TAAApppppppepd=============")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -188,7 +189,10 @@ extension LeagueDetailsViewController{
            if viewModel.resultUpComingEvents?.count ?? 0 == 0 {
                switch indexPath.section {
                case 0:
-                   headerView.headerTitle.text = "Upcoming Events"
+                   headerView.headerTitle.text = "Latest Events"
+//               case 1:
+//                   headerView.headerTitle.text = "Latest Events"
+
                default:
                    headerView.headerTitle.text = "Teams"
                }
@@ -235,9 +239,11 @@ extension LeagueDetailsViewController{
     cell.contentView.layer.cornerRadius = 16
   }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let upcomingEventsCount = viewModel.resultUpComingEvents?.count else { return }
-        
-        if (upcomingEventsCount == 0 && indexPath.section == 1) || (upcomingEventsCount != 0 && indexPath.section == 2) {
+        print("========Debuuuuuug \(indexPath.section)")
+
+         let upcomingEventsCount = viewModel.resultUpComingEvents?.count
+        print("========Debuuuuuug \(upcomingEventsCount)")
+        if (upcomingEventsCount == 0 || upcomingEventsCount == nil && indexPath.section == 1) || (upcomingEventsCount != 0 && indexPath.section == 2) {
             
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -253,51 +259,81 @@ extension LeagueDetailsViewController{
             }
         }
     }
-
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let eventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpComingEventsCell", for: indexPath) as! UpComingEventsCell
-        let teamCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! TeamCell
+      let eventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpComingEventsCell", for: indexPath) as! UpComingEventsCell
+      let teamCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! TeamCell
 
-        makeCellBorderRadius(cell: eventCell)
-        makeCellBorderRadius(cell: teamCell)
+      makeCellBorderRadius(cell: eventCell)
+      makeCellBorderRadius(cell: teamCell)
 
-        if let resultUpComingEvents = viewModel.resultUpComingEvents, resultUpComingEvents.isEmpty {
-            switch indexPath.section {
-            case 0:
-                if let event = viewModel.latestEventResult?[indexPath.row] {
-                    eventCell.configure(with: event)
-                    eventCell.scoreLabel.text = (event.finalResult == "-") ? "N/A" : event.finalResult
-                }
-                return eventCell
-            default:
-                if let team = viewModel.teams?[indexPath.row] {
-                    teamCell.configure(with: team)
-                }
-                return teamCell
-            }
-        } else {
-            switch indexPath.section {
-            case 0:
-                if let event = viewModel.resultUpComingEvents?[indexPath.row] {
-                    eventCell.configure(with: event)
-                    eventCell.scoreLabel.text = (event.finalResult == "-") ? "N/A" : event.finalResult
-                }
-                return eventCell
-            case 1:
-                if let event = viewModel.latestEventResult?[indexPath.row] {
-                    eventCell.configure(with: event)
-                    eventCell.scoreLabel.text = (event.finalResult == "-") ? "N/A" : event.finalResult
-                }
-                return eventCell
-            default:
-                if let team = viewModel.teams?[indexPath.row] {
-                    teamCell.configure(with: team)
-                }
-                return teamCell
-            }
+      if viewModel.resultUpComingEvents?.count ?? 0 == 0{
+        switch indexPath.section {
+        case 0:
+          eventCell.configure(with:  (viewModel.latestEventResult?[indexPath.row])!)
+          return eventCell
+        default:
+          teamCell.configure(with:  (viewModel.teams?[indexPath.row])!)
+          return teamCell
         }
+      } else {
+        switch indexPath.section {
+        case 0:
+          eventCell.configure(with: (viewModel.resultUpComingEvents?[indexPath.row])!)
+          return eventCell
+        case 1:
+          eventCell.configure(with: (viewModel.latestEventResult?[indexPath.row])!)
+          return eventCell
+        default:
+          teamCell.configure(with: (viewModel.teams?[indexPath.row])!)
+          return teamCell
+        }
+      }
     }
+
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let eventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpComingEventsCell", for: indexPath) as! UpComingEventsCell
+//        let teamCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! TeamCell
+//
+//        makeCellBorderRadius(cell: eventCell)
+//        makeCellBorderRadius(cell: teamCell)
+//
+//        if let resultUpComingEvents = viewModel.resultUpComingEvents, resultUpComingEvents.isEmpty {
+//            switch indexPath.section {
+//            case 1:
+//                if let event = viewModel.latestEventResult?[indexPath.row] {
+//                    eventCell.configure(with: event)
+//                    eventCell.scoreLabel.text = (event.finalResult == "-") ? "N/A" : event.finalResult
+//                }
+//                return eventCell
+//            default:
+//                if let team = viewModel.teams?[indexPath.row] {
+//                    teamCell.configure(with: team)
+//                }
+//                return teamCell
+//            }
+//        } else {
+//            switch indexPath.section {
+//            case 0:
+//                if let event = viewModel.resultUpComingEvents?[indexPath.row] {
+//                    eventCell.configure(with: event)
+//                    eventCell.scoreLabel.text = (event.finalResult == "-") ? "N/A" : event.finalResult
+//                }
+//                return eventCell
+//            case 1:
+//                if let event = viewModel.latestEventResult?[indexPath.row] {
+//                    eventCell.configure(with: event)
+//                    eventCell.scoreLabel.text = (event.finalResult == "-") ? "N/A" : event.finalResult
+//                }
+//                return eventCell
+//            default:
+//                if let team = viewModel.teams?[indexPath.row] {
+//                    teamCell.configure(with: team)
+//                }
+//                return teamCell
+//            }
+//        }
+//    }
 
 
   }
