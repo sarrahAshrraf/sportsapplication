@@ -128,8 +128,10 @@ class FavoriteViewController: UITableViewController {
             leagueDetailsVC.leagueId = Int(selectedLeague.leagueId)
             leagueDetailsVC.leagueName = selectedLeague.leagueName ?? ""
             leagueDetailsVC.sportName = selectedLeague.sportName ?? ""
-           // leagueDetailsVC.modalPresentationStyle = .fullScreen
-            present(leagueDetailsVC, animated: true, completion: nil)
+            let navigationController = UINavigationController(rootViewController: leagueDetailsVC)
+//                teamVC.modalPresentationStyle = .fullScreen
+             present(navigationController, animated: true, completion: nil)
+//            present(leagueDetailsVC, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "No Internet Connection", message: "You must connect to the internet to see the League details.", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)

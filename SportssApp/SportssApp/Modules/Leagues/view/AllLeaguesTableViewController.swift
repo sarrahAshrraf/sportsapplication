@@ -84,7 +84,11 @@ class AllLeaguesTableViewController: UITableViewController {
             leagueDetailsVC.leagueId = viewModel.result?[indexPath.row].leagueKey ?? 0
             leagueDetailsVC.leagueName = viewModel.result?[indexPath.row].leagueName ?? ""
             leagueDetailsVC.leagueImage = viewModel.result?[indexPath.row].leagueLogo ?? ""
-            navigationController?.pushViewController(leagueDetailsVC, animated: true)
+            let navigationController = UINavigationController(rootViewController: leagueDetailsVC)
+
+             leagueDetailsVC.modalPresentationStyle = .fullScreen
+             present(navigationController, animated: true, completion: nil)
+//            navigationController?.pushViewController(leagueDetailsVC, animated: true)
         }
     }
 
