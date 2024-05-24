@@ -67,4 +67,8 @@ class DatabaseManager {
         context.delete(league)
         saveContext()
     }
+    
+
+    
+
 }

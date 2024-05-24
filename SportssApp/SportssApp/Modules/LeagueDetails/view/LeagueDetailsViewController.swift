@@ -16,6 +16,7 @@ class LeagueDetailsViewController: UIViewController , UICollectionViewDelegate, 
     var dataFetchedCounter = 0
     var viewModel: LeagueDetailsViewModel!
     @IBOutlet weak var leaguesCollectionView: UICollectionView!
+    
 //    @IBAction func backButton(_ sender: UIBarButtonItem) {
 //    }
 //    @IBAction func favoriteBtn(_ sender: UIButton) {
@@ -54,7 +55,12 @@ print("TAAApppppppepd=============")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        leaguesCollectionView.dataSource = self
+//        leaguesCollectionView.dataSource = self
+        guard let collectionView = leaguesCollectionView else {
+            return
+        }
+        collectionView.dataSource = self
+
         leaguesCollectionView.delegate = self
         let eventCell = UINib(nibName: "UpComingEventsCell", bundle: nil)
         leaguesCollectionView.register(eventCell, forCellWithReuseIdentifier: "UpComingEventsCell")
@@ -75,7 +81,6 @@ print("TAAApppppppepd=============")
     }
     
     func fetchNetworkData(){
-        
         viewModel.fetchUpComingEvents(sportName: sportName, leagueID: "\(String(leagueId))", startDate: Utilities.calculateCurrentDate(), endDate: Utilities.calculateEndDate(), eventType: .upcoming)
         viewModel.fetchLatestEvents(sportName: sportName, leagueID: "\(String(leagueId))", startDate: Utilities.calculateStartDate(), endDate: Utilities.calculateCurrentDate(), eventType: .latest)
         
@@ -85,6 +90,7 @@ print("TAAApppppppepd=============")
         viewModel.fetchTeamData( leagueID:"\(leagueId)", sportName: sportName)
         
     }
+
     func setUpUI(){
         viewModel.bindResultToViewController = { [weak self] in
         self?.dataFetchedCounter += 1
