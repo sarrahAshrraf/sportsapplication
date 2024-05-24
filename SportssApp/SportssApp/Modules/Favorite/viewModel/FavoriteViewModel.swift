@@ -15,4 +15,11 @@ class FavoriteLeaguesViewModel {
         self.databaseManager = databaseManager
     }
     
+    func fetchAllLeagues() -> [LeagueEntity] {
+        return databaseManager.fetchAllLeagues()
+    }
+    
+    func deleteLeague(_ league: LeagueEntity) {
+        databaseManager.deleteLeague(league: league)
+        }
 }
