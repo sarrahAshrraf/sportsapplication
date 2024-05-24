@@ -68,6 +68,20 @@ class DatabaseManager {
         saveContext()
     }
     
+ 
+    func fetchAllLeagues() -> [LeagueEntity] {
+        let context = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<LeagueEntity> = LeagueEntity.fetchRequest()
+        
+        do {
+            let leagues = try context.fetch(fetchRequest)
+            print(leagues.count)
+            return leagues
+        } catch {
+            print("Failed to fetch leagues: \(error)")
+            return []
+        }
+    }
 
     
 
