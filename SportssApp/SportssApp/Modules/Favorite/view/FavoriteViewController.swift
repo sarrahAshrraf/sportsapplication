@@ -117,6 +117,26 @@ class FavoriteViewController: UITableViewController {
         }
     
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if reachability.connection != .unavailable {
+            let selectedLeague = leagues[indexPath.row]
+            let storyboard = UIStoryboard(name: "ScreensStoryBoard", bundle: nil)
+            guard let leagueDetailsVC = storyboard.instantiateViewController(identifier: "leagueDetailsVC") as? LeagueDetailsViewController else {
+                return
+            }
+         //   let leagueDetailsVC = LeagueDetailsViewController()
+            leagueDetailsVC.leagueId = Int(selectedLeague.leagueId)
+            leagueDetailsVC.leagueName = selectedLeague.leagueName ?? ""
+            leagueDetailsVC.sportName = selectedLeague.sportName ?? ""
+           // leagueDetailsVC.modalPresentationStyle = .fullScreen
+            present(leagueDetailsVC, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "No Internet Connection", message: "You must connect to the internet to see the League details.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+        }
+    }
 
     /*
     // Override to support rearranging the table view.
