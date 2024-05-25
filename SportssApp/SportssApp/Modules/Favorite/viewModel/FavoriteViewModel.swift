@@ -9,14 +9,17 @@ import Foundation
 import CoreData
 
 class FavoriteLeaguesViewModel {
-    private let databaseManager: DatabaseManager
     
-    init(databaseManager: DatabaseManager = DatabaseManager.shared) {
-        self.databaseManager = databaseManager
+    let databaseManager = DatabaseManager.shared
+    var binddbToViewController:(()->()) = {}
+    var allLeagues:[LeagueEntity] = []{
+    didSet{
+        binddbToViewController()
     }
+}
     
-    func fetchAllLeagues() -> [LeagueEntity] {
-        return databaseManager.fetchAllLeagues()
+    func fetchAllLeagues() {
+        allLeagues = databaseManager.fetchAllLeagues()
     }
     
     func deleteLeague(_ league: LeagueEntity) {
