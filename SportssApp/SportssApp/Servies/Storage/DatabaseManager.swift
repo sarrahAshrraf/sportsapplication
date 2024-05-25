@@ -82,7 +82,40 @@ class DatabaseManager {
             return []
         }
     }
-
+    
+    
+    func deleteLeague(leagueId: Int) {
+        let context = persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<LeagueEntity> = LeagueEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "leagueId == %d", leagueId)
+        
+        do {
+            let leagues = try context.fetch(fetchRequest)
+            if let leagueToDelete = leagues.first {
+                context.delete(leagueToDelete)
+                saveContext()
+            } else {
+                print("No league found with ID \(leagueId)")
+            }
+        } catch {
+            print("Failed to fetch or delete league: \(error)")
+        }
+    }
+    
+    func isLeagueFavorite(leagueId: Int) -> Bool {
+        let context = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<LeagueEntity> = LeagueEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "leagueId == %d", leagueId)
+        
+        do {
+            let leagues = try context.fetch(fetchRequest)
+            return !leagues.isEmpty
+        } catch {
+            print("Failed to fetch league: \(error)")
+            return false
+        }
+    }
     
 
 }

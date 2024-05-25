@@ -17,7 +17,8 @@ import UIKit
 class LeagueDetailsViewModel{
     
     var bindResultToViewController : (() -> ()) = {}
-    
+    var bindDBToViewController: (()->()) = {}
+
     var resultUpComingEvents : [Event]? = [] {
         didSet{
             bindResultToViewController()
@@ -35,6 +36,12 @@ class LeagueDetailsViewModel{
     {
       didSet{
         bindResultToViewController()
+      }
+    }
+    
+    var isFav: Bool = false {
+      didSet{
+        bindDBToViewController()
       }
     }
     
@@ -98,7 +105,20 @@ class LeagueDetailsViewModel{
 }
     func saveLeagueToDB(leagueId: Int, leagueName: String, leagueImg: String, sportName: String) {
             DatabaseManager.shared.saveLeague(leagueId: leagueId, leagueName: leagueName, leagueImg: leagueImg, sportName: sportName)
+        isFav = true
+
         }
+    
+    func deleteLeagueFromDB(leagueId: Int){
+        DatabaseManager.shared.deleteLeague(leagueId: leagueId)
+        isFav = false
+    }
+    
+    func isFavLeague(leagueId: Int) {
+         let isFavorite = DatabaseManager.shared.isLeagueFavorite(leagueId: leagueId)
+         self.isFav = isFavorite
+     }
+    
 }
 
 

@@ -17,12 +17,14 @@ class AllLeaguesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(sportName)
+        self.title = "\(sportName)"
+
         let cell = UINib(nibName: "LeagueCell", bundle: nil)
         tableView.register(cell, forCellReuseIdentifier: "LeagueCell")
         tableView.backgroundColor = UIColor.systemGray6
         viewModel = LeagueViewModel()
         
-        viewModel.getData(sportName: sportName ) //TODO indexPath colelction
+        viewModel.getData(sportName: sportName )
         print(viewModel.getData(sportName: sportName ))
         viewModel.bindResultToViewController = { [weak self] in
             

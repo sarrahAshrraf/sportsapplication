@@ -8,6 +8,15 @@
 import UIKit
 
 class LeagueDetailsViewController: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource {
+    @IBOutlet weak var favoriteBtn: UIBarButtonItem!
+    @IBAction func favoriteButton(_ sender: UIBarButtonItem) {
+        favoriteButtonTapped()
+    }
+    @IBAction func backButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+  
+    }
+    
     var indicator: UIActivityIndicatorView!
     var sportName:String = ""
     var leagueId:Int = 0
@@ -17,42 +26,31 @@ class LeagueDetailsViewController: UIViewController , UICollectionViewDelegate, 
     var viewModel: LeagueDetailsViewModel!
     @IBOutlet weak var leaguesCollectionView: UICollectionView!
     
-//    @IBAction func backButton(_ sender: UIBarButtonItem) {
-//    }
-//    @IBAction func favoriteBtn(_ sender: UIButton) {
-//        viewModel.saveLeagueToDB(leagueId: leagueId, leagueName: leagueName, leagueImg: leagueImage, sportName: sportName)
-//        print("button clickedxxxxxxxxxxxxxx")
-//        
-//    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationItem.hidesBackButton = true
         
-        self.title = "League Details"
+        self.title = "\(leagueName)"
         
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-        
-        let favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteButtonTapped))
-        
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.rightBarButtonItem = favoriteButton
-        
+        viewModel.bindDBToViewController = { [weak self] in
+                   self?.updateFavoriteButton()
+               }
+
         indicator = UIActivityIndicatorView(style: .large)
         indicator.center = self.view.center
         self.view.addSubview(indicator)
         indicator.startAnimating()
     }
 
-    @objc func backButtonTapped() {
-//        navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
 
-    }
-
-    @objc func favoriteButtonTapped() {
-        viewModel.saveLeagueToDB(leagueId: leagueId, leagueName: leagueName, leagueImg: leagueImage, sportName: sportName)
-print("TAAApppppppepd=============")
+    func favoriteButtonTapped() {
+        if viewModel.isFav {
+            viewModel.deleteLeagueFromDB(leagueId: leagueId)
+        } else {
+            viewModel.saveLeagueToDB(leagueId: leagueId, leagueName: leagueName, leagueImg: leagueImage, sportName: sportName)
+        }
+        updateFavoriteButton()
     }
 
     override func viewDidLoad() {
@@ -77,10 +75,22 @@ print("TAAApppppppepd=============")
            
         viewModel = LeagueDetailsViewModel()
         
+        viewModel.bindDBToViewController = { [weak self] in
+                   self?.updateFavoriteButton()
+               }
+        viewModel.isFavLeague(leagueId: leagueId)
+
+        
         fetchNetworkData()
         setUpUI()
         saveToDB()
     }
+    
+    func updateFavoriteButton() {
+        
+            let buttonImage = viewModel.isFav ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+        favoriteBtn.image = buttonImage
+        }
     
     func fetchNetworkData(){
         viewModel.fetchUpComingEvents(sportName: sportName, leagueID: "\(String(leagueId))", startDate: Utilities.calculateCurrentDate(), endDate: Utilities.calculateEndDate(), eventType: .upcoming)
@@ -131,6 +141,9 @@ print("TAAApppppppepd=============")
         }
       }
     }
+    
+
+    
     
     func saveToDB(){}
     
@@ -267,9 +280,9 @@ extension LeagueDetailsViewController{
             
             if let teamKey = viewModel.teams?[indexPath.row].team_key {
                 teamVC.teamId = teamKey
-                let navigationController = UINavigationController(rootViewController: teamVC)
+//                let navigationController = UINavigationController(rootViewController: teamVC)
 //                teamVC.modalPresentationStyle = .fullScreen
-                 present(navigationController, animated: true, completion: nil)
+                 present(teamVC, animated: true, completion: nil)
 //                navigationController?.pushViewController(teamVC, animated: true)
             }
         }

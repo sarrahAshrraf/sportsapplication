@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HV0-gg-Uc8">
-                                <rect key="frame" x="0.0" y="55" width="393" height="763"/>
+                                <rect key="frame" x="0.0" y="98" width="393" height="720"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LbS-xf-Mtb">
                                     <size key="itemSize" width="128" height="128"/>
@@ -28,17 +28,39 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RiL-t9-hHQ">
+                                <rect key="frame" x="0.0" y="48" width="393" height="44"/>
+                                <items>
+                                    <navigationItem title="League Details" id="buQ-ze-aNJ">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.left" catalog="system" id="niB-c3-7sn">
+                                            <connections>
+                                                <action selector="backButton:" destination="Y6W-OH-hqX" id="zQA-3q-z8D"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" image="heart" catalog="system" id="QoN-Q5-sfl">
+                                            <connections>
+                                                <action selector="favoriteButton:" destination="Y6W-OH-hqX" id="u1J-54-h0O"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="HV0-gg-Uc8" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="topMargin" constant="-4" id="a6O-uT-8xb"/>
+                            <constraint firstItem="HV0-gg-Uc8" firstAttribute="top" secondItem="RiL-t9-hHQ" secondAttribute="bottom" constant="6" id="QUu-Bx-Lu4"/>
+                            <constraint firstItem="HV0-gg-Uc8" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="topMargin" constant="39" id="a6O-uT-8xb"/>
+                            <constraint firstItem="RiL-t9-hHQ" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="48" id="dBO-RK-eR8"/>
+                            <constraint firstItem="RiL-t9-hHQ" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="ing-LR-lrN"/>
                             <constraint firstItem="HV0-gg-Uc8" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="lgC-gB-zLC"/>
                             <constraint firstItem="HV0-gg-Uc8" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="rCl-70-hES"/>
                             <constraint firstItem="HV0-gg-Uc8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="u8S-nY-QGK"/>
+                            <constraint firstItem="RiL-t9-hHQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="zjW-3r-DsR"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="favoriteBtn" destination="QoN-Q5-sfl" id="82R-bQ-Z34"/>
                         <outlet property="leaguesCollectionView" destination="HV0-gg-Uc8" id="Fyv-P5-7Z8"/>
                     </connections>
                 </viewController>
@@ -76,6 +98,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.left" catalog="system" width="128" height="95"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
