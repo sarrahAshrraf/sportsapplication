@@ -15,6 +15,9 @@ class FavoriteViewController: UITableViewController {
     var leagues: [LeagueEntity] = []
     let reachability = try! Reachability()
     
+    var leaguesBySport: [String: [LeagueEntity]] = [:]
+    var sports: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,11 +30,25 @@ class FavoriteViewController: UITableViewController {
         viewModel = FavoriteLeaguesViewModel()
         
         leagues = viewModel.fetchAllLeagues()
-                print("**************************\(leagues.count)")
-        indicator.stopAnimating()
         
-        let reachability = try! Reachability()
-
+        // Group leagues by sport
+        for league in leagues {
+            if let sportName = league.sportName {
+                if leaguesBySport[sportName] == nil {
+                    leaguesBySport[sportName] = [league]
+                } else {
+                    leaguesBySport[sportName]?.append(league)
+                }
+            }
+        }
+        
+        // Populate sports array with unique sports
+        sports = Array(leaguesBySport.keys)
+        
+        indicator.stopAnimating()
+        tableView.reloadData()
+        
+        // Reachability setup
         reachability.whenReachable = { reachability in
             if reachability.connection == .wifi {
                 print("Reachable via WiFi")
@@ -48,35 +65,41 @@ class FavoriteViewController: UITableViewController {
         } catch {
             print("Unable to start notifier")
         }
-       
     }
+    
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
+          return sports.count
+      }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return leagues.count
-    }
+      override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+          let sport = sports[section]
+          return leaguesBySport[sport]?.count ?? 0
+      }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteTableViewCell", for: indexPath) as! FavoriteTableViewCell
+      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+          let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteTableViewCell", for: indexPath) as! FavoriteTableViewCell
 
-        let league = leagues[indexPath.row]
-        
-        if let image = URL(string: league.leagueImg ?? "") {
-                cell.favoriteimg.kf.setImage(with: image)
-            } else {
-                cell.favoriteimg.image = UIImage(named: "torphy")
-            }
-        cell.favoriteLabel.text = league.leagueName
-                
-        return cell
-    }
+          let sport = sports[indexPath.section]
+          if let leagues = leaguesBySport[sport] {
+              let league = leagues[indexPath.row]
+              
+              if let image = URL(string: league.leagueImg ?? "") {
+                  cell.favoriteimg.kf.setImage(with: image)
+              } else {
+                  cell.favoriteimg.image = UIImage(named: "torphy")
+              }
+              cell.favoriteLabel.text = league.leagueName
+          }
+          
+          return cell
+      }
+
+      override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+          return sports[section] // Set section headers as sports
+      }
 
     /*
     // Override to support conditional editing of the table view.
@@ -108,13 +131,18 @@ class FavoriteViewController: UITableViewController {
             present(alert, animated: true, completion: nil)
         }
         
-        func deleteLeague(at indexPath: IndexPath) {
-            let league = leagues[indexPath.row]
+    
+    func deleteLeague(at indexPath: IndexPath) {
+        let sport = sports[indexPath.section]
+        if var leaguesForSport = leaguesBySport[sport] {
+            let league = leaguesForSport[indexPath.row]
             viewModel.deleteLeague(league)
-            
-            leagues.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            leaguesForSport.remove(at: indexPath.row)
+            leaguesBySport[sport] = leaguesForSport
         }
+        tableView.deleteRows(at: [indexPath], with: .fade)
+    }
+
     
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -140,6 +168,18 @@ class FavoriteViewController: UITableViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 1)
+        UIView.animate(withDuration: 0.3){
+            cell.layer.transform = CATransform3DMakeScale(1,1,1)
+        }
+        
+    }
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
