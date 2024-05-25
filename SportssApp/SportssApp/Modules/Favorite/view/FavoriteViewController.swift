@@ -12,8 +12,8 @@ class FavoriteViewController: UITableViewController {
 
     var viewModel: FavoriteLeaguesViewModel!
     var indicator: UIActivityIndicatorView!
-    var leagues: [LeagueEntity] = []
     let reachability = try! Reachability()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +25,12 @@ class FavoriteViewController: UITableViewController {
         self.view.addSubview(indicator)
         indicator.startAnimating()
         viewModel = FavoriteLeaguesViewModel()
-        
-        leagues = viewModel.fetchAllLeagues()
-                print("**************************\(leagues.count)")
+        viewModel.binddbToViewController = {[weak self] in
+            self?.tableView.reloadData()
+        }
         indicator.stopAnimating()
+        tableView.reloadData()
         
-        let reachability = try! Reachability()
-
         reachability.whenReachable = { reachability in
             if reachability.connection == .wifi {
                 print("Reachable via WiFi")
@@ -48,35 +47,42 @@ class FavoriteViewController: UITableViewController {
         } catch {
             print("Unable to start notifier")
         }
-       
     }
+    
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//          return sports.count
+//      }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return leagues.count
-    }
+      override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+          return viewModel.allLeagues.count
+      }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteTableViewCell", for: indexPath) as! FavoriteTableViewCell
+      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+          let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteTableViewCell", for: indexPath) as! FavoriteTableViewCell
 
-        let league = leagues[indexPath.row]
-        
-        if let image = URL(string: league.leagueImg ?? "") {
-                cell.favoriteimg.kf.setImage(with: image)
-            } else {
-                cell.favoriteimg.image = UIImage(named: "torphy")
-            }
-        cell.favoriteLabel.text = league.leagueName
-                
-        return cell
-    }
+          cell.favoriteLabel.text = viewModel.allLeagues[indexPath.row].leagueName
+          if let image = URL(string: viewModel.allLeagues[indexPath.row].leagueImg ?? "") {
+                        cell.favoriteimg.kf.setImage(with: image)
+                    } else {
+                        cell.favoriteimg.image = UIImage(named: "torphy")
+                    }
+//          cell.contentView.layer.cornerRadius = 55
+//          cell.contentView.layer.masksToBounds = true
+          
+      //    let sport = sports[indexPath.section]
+//          if let leagues = leaguesBySport[sport] {
+//              let league = leagues[indexPath.row]
+//
+//          
+         return cell
+     }
+
+//      override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//          return sports[section]
+//      }
 
     /*
     // Override to support conditional editing of the table view.
@@ -97,29 +103,34 @@ class FavoriteViewController: UITableViewController {
         func confirmDelete(indexPath: IndexPath) {
             let alert = UIAlertController(title: "Delete League", message: "Are you sure you want to delete ?", preferredStyle: .alert)
             
-            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
-                self?.deleteLeague(at: indexPath)
-            }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+//                self?.deleteLeague(at: indexPath)
+//            }
+          //  let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             
-            alert.addAction(deleteAction)
-            alert.addAction(cancelAction)
+        //    alert.addAction(deleteAction)
+        //    alert.addAction(cancelAction)
             
             present(alert, animated: true, completion: nil)
         }
         
-        func deleteLeague(at indexPath: IndexPath) {
-            let league = leagues[indexPath.row]
-            viewModel.deleteLeague(league)
-            
-            leagues.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
+    
+//    func deleteLeague(at indexPath: IndexPath) {
+//        let sport = sports[indexPath.section]
+//        if var leaguesForSport = leaguesBySport[sport] {
+//            let league = leaguesForSport[indexPath.row]
+//            viewModel.deleteLeague(league)
+//            leaguesForSport.remove(at: indexPath.row)
+//            leaguesBySport[sport] = leaguesForSport
+//        }
+//        tableView.deleteRows(at: [indexPath], with: .fade)
+//    }
+
     
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if reachability.connection != .unavailable {
-            let selectedLeague = leagues[indexPath.row]
+            let selectedLeague = viewModel.allLeagues[indexPath.row]
             let storyboard = UIStoryboard(name: "ScreensStoryBoard", bundle: nil)
             guard let leagueDetailsVC = storyboard.instantiateViewController(identifier: "leagueDetailsVC") as? LeagueDetailsViewController else {
                 return
@@ -129,7 +140,7 @@ class FavoriteViewController: UITableViewController {
             leagueDetailsVC.leagueName = selectedLeague.leagueName ?? ""
             leagueDetailsVC.sportName = selectedLeague.sportName ?? ""
             let navigationController = UINavigationController(rootViewController: leagueDetailsVC)
-//                teamVC.modalPresentationStyle = .fullScreen
+            navigationController.modalPresentationStyle = .fullScreen
              present(navigationController, animated: true, completion: nil)
 //            present(leagueDetailsVC, animated: true, completion: nil)
         } else {
@@ -139,6 +150,38 @@ class FavoriteViewController: UITableViewController {
             present(alert, animated: true, completion: nil)
         }
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.fetchAllLeagues()
+        tableView.reloadData()
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 1)
+        UIView.animate(withDuration: 0.3){
+            cell.layer.transform = CATransform3DMakeScale(1,1,1)
+        }
+    }
+    
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 10))
+//        headerView.backgroundColor = UIColor.lightGray
+//        
+//        let headerLabel = UILabel(frame: CGRect(x: 15, y: 13, width: tableView.frame.width - 30, height: 30))
+//        headerLabel.text = sports[section]
+//        headerLabel.textColor = UIColor.white
+//        headerLabel.font = UIFont.boldSystemFont(ofSize: 22)
+//        
+//        headerView.addSubview(headerLabel)
+//        
+//        return headerView
+//    }
+
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 50
+//    }
+//    
 
     /*
     // Override to support rearranging the table view.
