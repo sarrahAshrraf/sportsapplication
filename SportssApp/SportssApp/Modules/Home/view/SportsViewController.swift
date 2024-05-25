@@ -29,6 +29,9 @@ class SportsViewController: UIViewController,UICollectionViewDelegate , UICollec
 
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        try? reachability.startNotifier()
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
