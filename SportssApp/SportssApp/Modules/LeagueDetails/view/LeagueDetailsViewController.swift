@@ -45,7 +45,9 @@ class LeagueDetailsViewController: UIViewController , UICollectionViewDelegate, 
     }
 
     @objc func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
+//        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+
     }
 
     @objc func favoriteButtonTapped() {
@@ -265,7 +267,10 @@ extension LeagueDetailsViewController{
             
             if let teamKey = viewModel.teams?[indexPath.row].team_key {
                 teamVC.teamId = teamKey
-                navigationController?.pushViewController(teamVC, animated: true)
+                let navigationController = UINavigationController(rootViewController: teamVC)
+//                teamVC.modalPresentationStyle = .fullScreen
+                 present(navigationController, animated: true, completion: nil)
+//                navigationController?.pushViewController(teamVC, animated: true)
             }
         }
     }
