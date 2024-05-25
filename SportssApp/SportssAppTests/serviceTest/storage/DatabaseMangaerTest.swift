@@ -87,4 +87,20 @@ class DatabaseManagerTest: XCTestCase {
            XCTAssertEqual(leagues.first?.leagueImg, leagueImg)
            XCTAssertEqual(leagues.first?.sportName, sportName)
        }
+    
+    func testDeleteLeagueById() throws {
+           let leagueId = 2
+           let leagueName = "La Liga"
+           let leagueImg = "la_liga.png"
+           let sportName = "Football"
+           databaseManager.saveLeague(leagueId: leagueId, leagueName: leagueName, leagueImg: leagueImg, sportName: sportName)
+    
+           databaseManager.deleteLeague(leagueId: leagueId)
+    
+           let fetchRequest: NSFetchRequest<LeagueEntity> = LeagueEntity.fetchRequest()
+           fetchRequest.predicate = NSPredicate(format: "leagueId == %d", leagueId)
+           let leagues = try mockPersistentContainer.viewContext.fetch(fetchRequest)
+           
+           XCTAssertEqual(leagues.count, 0)
+       }
 }
