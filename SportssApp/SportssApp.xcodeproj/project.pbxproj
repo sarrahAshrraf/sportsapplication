@@ -21,6 +21,9 @@
 		DB92145717E3AE1DF4FCA461 /* Pods_SportssApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DEF0D6593D560C356D424F /* Pods_SportssApp.framework */; };
 		E7033EF22BFF0DA800E50A3C /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7033EF02BFF0DA800E50A3C /* HeaderCell.swift */; };
 		E7033EF32BFF0DA800E50A3C /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7033EF12BFF0DA800E50A3C /* HeaderCell.xib */; };
+		E7438AD62C0132DA002D6422 /* NetworkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7438AD52C0132DA002D6422 /* NetworkTest.swift */; };
+		E7438AD82C013448002D6422 /* FakeNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7438AD72C013448002D6422 /* FakeNetworkResponse.swift */; };
+		E7438ADA2C0134D6002D6422 /* MockingNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7438AD92C0134D6002D6422 /* MockingNetwork.swift */; };
 		E74ACE9D2BFEF3D20048976B /* UpComingEventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74ACE9B2BFEF3D20048976B /* UpComingEventsCell.swift */; };
 		E74ACE9E2BFEF3D20048976B /* UpComingEventsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E74ACE9C2BFEF3D20048976B /* UpComingEventsCell.xib */; };
 		E74ACEA12BFEF3E20048976B /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74ACE9F2BFEF3E20048976B /* TeamCell.swift */; };
@@ -94,6 +97,9 @@
 		D03980B92691B57C9B8AB96F /* Pods_SportssApp_SportssAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportssApp_SportssAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7033EF02BFF0DA800E50A3C /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		E7033EF12BFF0DA800E50A3C /* HeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
+		E7438AD52C0132DA002D6422 /* NetworkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTest.swift; sourceTree = "<group>"; };
+		E7438AD72C013448002D6422 /* FakeNetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNetworkResponse.swift; sourceTree = "<group>"; };
+		E7438AD92C0134D6002D6422 /* MockingNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockingNetwork.swift; sourceTree = "<group>"; };
 		E74ACE9B2BFEF3D20048976B /* UpComingEventsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingEventsCell.swift; sourceTree = "<group>"; };
 		E74ACE9C2BFEF3D20048976B /* UpComingEventsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpComingEventsCell.xib; sourceTree = "<group>"; };
 		E74ACE9F2BFEF3E20048976B /* TeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
@@ -202,6 +208,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E7438AD32C0132C2002D6422 /* serviceTest */ = {
+			isa = PBXGroup;
+			children = (
+				E7438AD42C0132CB002D6422 /* network */,
+			);
+			path = serviceTest;
+			sourceTree = "<group>";
+		};
+		E7438AD42C0132CB002D6422 /* network */ = {
+			isa = PBXGroup;
+			children = (
+				E7438AD52C0132DA002D6422 /* NetworkTest.swift */,
+				E7438AD72C013448002D6422 /* FakeNetworkResponse.swift */,
+				E7438AD92C0134D6002D6422 /* MockingNetwork.swift */,
+			);
+			path = network;
+			sourceTree = "<group>";
+		};
 		E755B7752BFE1BBC00D6CBFA /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +321,7 @@
 		E7E3B99E2BFB68C30025CC67 /* SportssAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				E7438AD32C0132C2002D6422 /* serviceTest */,
 				E7E3B99F2BFB68C30025CC67 /* SportssAppTests.swift */,
 			);
 			path = SportssAppTests;
@@ -724,6 +749,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7438AD62C0132DA002D6422 /* NetworkTest.swift in Sources */,
+				E7438ADA2C0134D6002D6422 /* MockingNetwork.swift in Sources */,
+				E7438AD82C013448002D6422 /* FakeNetworkResponse.swift in Sources */,
 				E7E3B9A02BFB68C30025CC67 /* SportssAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -809,7 +837,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -824,7 +852,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -872,7 +900,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -881,7 +909,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -899,7 +927,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AHWYKV5GTV;
+				DEVELOPMENT_TEAM = W8Y5UUN6C9;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SportssApp/Info.plist;
@@ -914,7 +942,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ITI.SportssApp;
+				PRODUCT_BUNDLE_IDENTIFIER = ITI.SportsssApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -930,7 +958,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AHWYKV5GTV;
+				DEVELOPMENT_TEAM = W8Y5UUN6C9;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SportssApp/Info.plist;
@@ -945,7 +973,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ITI.SportssApp;
+				PRODUCT_BUNDLE_IDENTIFIER = ITI.SportsssApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -961,9 +989,9 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AHWYKV5GTV;
+				DEVELOPMENT_TEAM = W8Y5UUN6C9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ITI.SportssAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -982,9 +1010,9 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AHWYKV5GTV;
+				DEVELOPMENT_TEAM = W8Y5UUN6C9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ITI.SportssAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1000,10 +1028,12 @@
 			baseConfigurationReference = 3F10822ED72497F9D54A37D0 /* Pods-SportssApp-SportssAppUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AHWYKV5GTV;
+				DEVELOPMENT_TEAM = W8Y5UUN6C9;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ITI.SportssAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1019,10 +1049,12 @@
 			baseConfigurationReference = 6A8029BE59618484602E7AFD /* Pods-SportssApp-SportssAppUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AHWYKV5GTV;
+				DEVELOPMENT_TEAM = W8Y5UUN6C9;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ITI.SportssAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
