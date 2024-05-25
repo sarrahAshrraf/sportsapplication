@@ -21,6 +21,7 @@
 		DB92145717E3AE1DF4FCA461 /* Pods_SportssApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DEF0D6593D560C356D424F /* Pods_SportssApp.framework */; };
 		E7033EF22BFF0DA800E50A3C /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7033EF02BFF0DA800E50A3C /* HeaderCell.swift */; };
 		E7033EF32BFF0DA800E50A3C /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7033EF12BFF0DA800E50A3C /* HeaderCell.xib */; };
+		E73D40EF2C027F8F007AFBB8 /* DatabaseMangaerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73D40EE2C027F8F007AFBB8 /* DatabaseMangaerTest.swift */; };
 		E7438AD62C0132DA002D6422 /* NetworkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7438AD52C0132DA002D6422 /* NetworkTest.swift */; };
 		E7438AD82C013448002D6422 /* FakeNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7438AD72C013448002D6422 /* FakeNetworkResponse.swift */; };
 		E7438ADA2C0134D6002D6422 /* MockingNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7438AD92C0134D6002D6422 /* MockingNetwork.swift */; };
@@ -97,6 +98,7 @@
 		D03980B92691B57C9B8AB96F /* Pods_SportssApp_SportssAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportssApp_SportssAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7033EF02BFF0DA800E50A3C /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		E7033EF12BFF0DA800E50A3C /* HeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
+		E73D40EE2C027F8F007AFBB8 /* DatabaseMangaerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseMangaerTest.swift; sourceTree = "<group>"; };
 		E7438AD52C0132DA002D6422 /* NetworkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTest.swift; sourceTree = "<group>"; };
 		E7438AD72C013448002D6422 /* FakeNetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNetworkResponse.swift; sourceTree = "<group>"; };
 		E7438AD92C0134D6002D6422 /* MockingNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockingNetwork.swift; sourceTree = "<group>"; };
@@ -208,9 +210,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E73D40ED2C027F77007AFBB8 /* storage */ = {
+			isa = PBXGroup;
+			children = (
+				E73D40EE2C027F8F007AFBB8 /* DatabaseMangaerTest.swift */,
+			);
+			path = storage;
+			sourceTree = "<group>";
+		};
 		E7438AD32C0132C2002D6422 /* serviceTest */ = {
 			isa = PBXGroup;
 			children = (
+				E73D40ED2C027F77007AFBB8 /* storage */,
 				E7438AD42C0132CB002D6422 /* network */,
 			);
 			path = serviceTest;
@@ -751,6 +762,7 @@
 			files = (
 				E7438AD62C0132DA002D6422 /* NetworkTest.swift in Sources */,
 				E7438ADA2C0134D6002D6422 /* MockingNetwork.swift in Sources */,
+				E73D40EF2C027F8F007AFBB8 /* DatabaseMangaerTest.swift in Sources */,
 				E7438AD82C013448002D6422 /* FakeNetworkResponse.swift in Sources */,
 				E7E3B9A02BFB68C30025CC67 /* SportssAppTests.swift in Sources */,
 			);
