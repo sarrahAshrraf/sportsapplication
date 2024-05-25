@@ -78,6 +78,9 @@ class FavoriteViewController: UITableViewController {
       override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteTableViewCell", for: indexPath) as! FavoriteTableViewCell
 
+//          cell.contentView.layer.cornerRadius = 55
+//          cell.contentView.layer.masksToBounds = true
+          
           let sport = sports[indexPath.section]
           if let leagues = leaguesBySport[sport] {
               let league = leagues[indexPath.row]
@@ -153,7 +156,7 @@ class FavoriteViewController: UITableViewController {
             leagueDetailsVC.leagueName = selectedLeague.leagueName ?? ""
             leagueDetailsVC.sportName = selectedLeague.sportName ?? ""
             let navigationController = UINavigationController(rootViewController: leagueDetailsVC)
-//                teamVC.modalPresentationStyle = .fullScreen
+            navigationController.modalPresentationStyle = .fullScreen
              present(navigationController, animated: true, completion: nil)
 //            present(leagueDetailsVC, animated: true, completion: nil)
         } else {
@@ -177,7 +180,7 @@ class FavoriteViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 30))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 10))
         headerView.backgroundColor = UIColor.lightGray
         
         let headerLabel = UILabel(frame: CGRect(x: 15, y: 13, width: tableView.frame.width - 30, height: 30))
@@ -193,6 +196,7 @@ class FavoriteViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
+    
 
     /*
     // Override to support rearranging the table view.
