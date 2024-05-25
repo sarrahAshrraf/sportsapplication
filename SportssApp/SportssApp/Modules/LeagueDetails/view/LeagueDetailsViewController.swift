@@ -40,7 +40,11 @@ class LeagueDetailsViewController: UIViewController , UICollectionViewDelegate, 
         indicator = UIActivityIndicatorView(style: .large)
         indicator.center = self.view.center
         self.view.addSubview(indicator)
-        indicator.startAnimating()
+        if viewModel.resultUpComingEvents?.isEmpty ?? true {
+                indicator.startAnimating()
+            } else {
+                indicator.stopAnimating()
+            }
     }
 
 
