@@ -9,7 +9,6 @@ import UIKit
 import Kingfisher
 import Alamofire
 class AllLeaguesTableViewController: UITableViewController {
-    
     //leagueCell
     var viewModel : LeagueViewModel!
     var sportName:String = ""
