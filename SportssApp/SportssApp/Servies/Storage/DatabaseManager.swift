@@ -117,5 +117,21 @@ class DatabaseManager {
         }
     }
     
+    func countUniqueSportNames() -> Int {
+         let context = persistentContainer.viewContext
+         let fetchRequest = NSFetchRequest<NSDictionary>(entityName: "LeagueEntity")
+         fetchRequest.resultType = .dictionaryResultType
+         fetchRequest.propertiesToFetch = ["sportName"]
+         fetchRequest.returnsDistinctResults = true
+
+         do {
+             let results = try context.fetch(fetchRequest)
+             return results.count
+         } catch {
+             print("Failed to fetch unique sport names: \(error)")
+             return 0
+         }
+    } 
+    
 
 }
