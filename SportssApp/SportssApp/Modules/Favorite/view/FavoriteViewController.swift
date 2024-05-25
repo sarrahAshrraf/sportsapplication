@@ -30,9 +30,7 @@ class FavoriteViewController: UITableViewController {
         viewModel = FavoriteLeaguesViewModel()
         
         leagues = viewModel.fetchAllLeagues()
-        
-        // Group leagues by sport
-        for league in leagues {
+                for league in leagues {
             if let sportName = league.sportName {
                 if leaguesBySport[sportName] == nil {
                     leaguesBySport[sportName] = [league]
@@ -42,13 +40,11 @@ class FavoriteViewController: UITableViewController {
             }
         }
         
-        // Populate sports array with unique sports
         sports = Array(leaguesBySport.keys)
         
         indicator.stopAnimating()
         tableView.reloadData()
         
-        // Reachability setup
         reachability.whenReachable = { reachability in
             if reachability.connection == .wifi {
                 print("Reachable via WiFi")
@@ -98,7 +94,7 @@ class FavoriteViewController: UITableViewController {
       }
 
       override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-          return sports[section] // Set section headers as sports
+          return sports[section]
       }
 
     /*
@@ -178,8 +174,26 @@ class FavoriteViewController: UITableViewController {
         UIView.animate(withDuration: 0.3){
             cell.layer.transform = CATransform3DMakeScale(1,1,1)
         }
-        
     }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 30))
+        headerView.backgroundColor = UIColor.lightGray
+        
+        let headerLabel = UILabel(frame: CGRect(x: 15, y: 13, width: tableView.frame.width - 30, height: 30))
+        headerLabel.text = sports[section]
+        headerLabel.textColor = UIColor.white
+        headerLabel.font = UIFont.boldSystemFont(ofSize: 22)
+        
+        headerView.addSubview(headerLabel)
+        
+        return headerView
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
