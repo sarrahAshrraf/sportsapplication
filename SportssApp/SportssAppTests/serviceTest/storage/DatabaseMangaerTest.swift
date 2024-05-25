@@ -68,4 +68,23 @@ class DatabaseManagerTest: XCTestCase {
         let isFavorite = databaseManager.isLeagueFavorite(leagueId: leagueId)
         XCTAssertTrue(isFavorite)
     }
+    
+    func testSaveLeague() throws {
+           let leagueId = 1
+           let leagueName = "Premier League"
+           let leagueImg = "premier_league.png"
+           let sportName = "Football"
+    
+           databaseManager.saveLeague(leagueId: leagueId, leagueName: leagueName, leagueImg: leagueImg, sportName: sportName)
+    
+           let fetchRequest: NSFetchRequest<LeagueEntity> = LeagueEntity.fetchRequest()
+           fetchRequest.predicate = NSPredicate(format: "leagueId == %d", leagueId)
+           let leagues = try mockPersistentContainer.viewContext.fetch(fetchRequest)
+           
+           XCTAssertEqual(leagues.count, 1)
+           XCTAssertEqual(leagues.first?.leagueId, Int32(leagueId))
+           XCTAssertEqual(leagues.first?.leagueName, leagueName)
+           XCTAssertEqual(leagues.first?.leagueImg, leagueImg)
+           XCTAssertEqual(leagues.first?.sportName, sportName)
+       }
 }
