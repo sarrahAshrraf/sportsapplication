@@ -38,4 +38,22 @@ final class LeagueDetailsViewModelTests: XCTestCase {
         
         waitForExpectations(timeout: 6, handler: nil)
     }
+    
+    func testFetchLatestEvents() {
+        let expectation = self.expectation(description: "Fetch latest events data")
+        
+        mockNetworkService.fetchDataFromApi(completionHandler: { (result: Result<Response?, Error>) in
+            switch result {
+            case .success(let data):
+                XCTAssertNotNil(data, "Latest events response is nil")
+            case .failure(let error):
+                XCTFail("Error occurred: \(error.localizedDescription)")
+            }
+            expectation.fulfill()
+        })
+        
+        viewModel.fetchLatestEvents(sportName: "football", leagueID: "205", startDate: "2022-01-18", endDate: "2023-01-18", eventType: .latest)
+        
+        waitForExpectations(timeout: 6, handler: nil)
+    }
 }
