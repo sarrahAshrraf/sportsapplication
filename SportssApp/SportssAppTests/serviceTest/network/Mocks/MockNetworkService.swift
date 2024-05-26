@@ -6,7 +6,6 @@
 //
 
 import Foundation
-@testable import SportssApp
 import Alamofire
 
 final class MockNetworkService {
@@ -17,7 +16,20 @@ final class MockNetworkService {
         self.shouldReturnError = shouldReturnError
     }
     
-    let fakeJsonObj: [String:Any] = [
+    func fetchDataFromApi<T: Decodable>(completionHandler: @escaping (Result<T, Error>) -> Void) {
+        DispatchQueue.global().async {
+            do {
+                sleep(1)
+                let jsonData = try JSONSerialization.data(withJSONObject: self.fakeJsonObj)
+                let result = try JSONDecoder().decode(T.self, from: jsonData)
+                completionHandler(.success(result))
+            } catch {
+                completionHandler(.failure(error))
+            }
+        }
+    }
+    
+    private let fakeJsonObj: [String: Any] = [
         "success": 1,
         "result": [
             [
@@ -26,7 +38,7 @@ final class MockNetworkService {
                 "country_key": 1,
                 "country_name": "eurocups",
                 "league_logo": "https://apiv2.allsportsapi.com/logo/logo_leagues/",
-                "country_logo": nil
+                "country_logo": nil // This is causing the issue
             ],
             [
                 "league_key": 1,
@@ -38,36 +50,4 @@ final class MockNetworkService {
             ]
         ]
     ]
-}
-
-extension MockNetworkService {
-    func fetchDataFromApi<T: Decodable>(completionHandler: @escaping (T?) -> Void) {
-        do {
-            let data = try JSONSerialization.data(withJSONObject: fakeJsonObj)
-            AF.request("", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil)
-                .response { resp in
-                    switch resp.result {
-                    case .success(let responseData):
-                        guard let responseData = responseData else {
-                            print("No data received from the server.")
-                            completionHandler(nil)
-                            return
-                        }
-                        do {
-                            let result = try JSONDecoder().decode(T.self, from: responseData)
-                            completionHandler(result)
-                        } catch {
-                            print("Decoding error: \(error)")
-                            completionHandler(nil)
-                        }
-                    case .failure(let error):
-                        print("Request error: \(error)")
-                        completionHandler(nil)
-                    }
-                }
-        } catch {
-            print("Serialization error: \(error)")
-            completionHandler(nil)
-        }
-    }
 }
