@@ -39,6 +39,8 @@
 		E755B7882BFE23A800D6CBFA /* LeagueDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E755B7872BFE23A800D6CBFA /* LeagueDetailsViewController.swift */; };
 		E7BDC2BF2BFFBA13009C9E47 /* LatestEventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BDC2BD2BFFBA13009C9E47 /* LatestEventsCell.swift */; };
 		E7BDC2C02BFFBA13009C9E47 /* LatestEventsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7BDC2BE2BFFBA13009C9E47 /* LatestEventsCell.xib */; };
+		E7D273C42C02EEF200954F18 /* TeamsViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D273C32C02EEF200954F18 /* TeamsViewModelTest.swift */; };
+		E7D273C62C02FC4900954F18 /* LeagueViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D273C52C02FC4900954F18 /* LeagueViewModelTest.swift */; };
 		E7E3B9862BFB68C10025CC67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3B9852BFB68C10025CC67 /* AppDelegate.swift */; };
 		E7E3B9882BFB68C10025CC67 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3B9872BFB68C10025CC67 /* SceneDelegate.swift */; };
 		E7E3B98A2BFB68C10025CC67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3B9892BFB68C10025CC67 /* ViewController.swift */; };
@@ -116,6 +118,8 @@
 		E755B7872BFE23A800D6CBFA /* LeagueDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueDetailsViewController.swift; sourceTree = "<group>"; };
 		E7BDC2BD2BFFBA13009C9E47 /* LatestEventsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestEventsCell.swift; sourceTree = "<group>"; };
 		E7BDC2BE2BFFBA13009C9E47 /* LatestEventsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LatestEventsCell.xib; sourceTree = "<group>"; };
+		E7D273C32C02EEF200954F18 /* TeamsViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsViewModelTest.swift; sourceTree = "<group>"; };
+		E7D273C52C02FC4900954F18 /* LeagueViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueViewModelTest.swift; sourceTree = "<group>"; };
 		E7E3B9822BFB68C10025CC67 /* SportssApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportssApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7E3B9852BFB68C10025CC67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7E3B9872BFB68C10025CC67 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -287,6 +291,15 @@
 			path = viewModel;
 			sourceTree = "<group>";
 		};
+		E7D273C22C02EEDE00954F18 /* viewModelTest */ = {
+			isa = PBXGroup;
+			children = (
+				E7D273C32C02EEF200954F18 /* TeamsViewModelTest.swift */,
+				E7D273C52C02FC4900954F18 /* LeagueViewModelTest.swift */,
+			);
+			path = viewModelTest;
+			sourceTree = "<group>";
+		};
 		E7E3B9792BFB68C10025CC67 = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +345,7 @@
 		E7E3B99E2BFB68C30025CC67 /* SportssAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				E7D273C22C02EEDE00954F18 /* viewModelTest */,
 				E7438AD32C0132C2002D6422 /* serviceTest */,
 				E7E3B99F2BFB68C30025CC67 /* SportssAppTests.swift */,
 			);
@@ -761,9 +775,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7438AD62C0132DA002D6422 /* NetworkTest.swift in Sources */,
+				E7D273C42C02EEF200954F18 /* TeamsViewModelTest.swift in Sources */,
 				E7438ADA2C0134D6002D6422 /* MockingNetwork.swift in Sources */,
 				E73D40EF2C027F8F007AFBB8 /* DatabaseMangaerTest.swift in Sources */,
 				E7438AD82C013448002D6422 /* FakeNetworkResponse.swift in Sources */,
+				E7D273C62C02FC4900954F18 /* LeagueViewModelTest.swift in Sources */,
 				E7E3B9A02BFB68C30025CC67 /* SportssAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
