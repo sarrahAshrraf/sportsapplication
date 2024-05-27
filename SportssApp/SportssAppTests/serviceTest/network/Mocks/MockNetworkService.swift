@@ -38,7 +38,7 @@ final class MockNetworkService {
                 "country_key": 1,
                 "country_name": "eurocups",
                 "league_logo": "https://apiv2.allsportsapi.com/logo/logo_leagues/",
-                "country_logo": nil // This is causing the issue
+                "country_logo": nil 
             ],
             [
                 "league_key": 1,
