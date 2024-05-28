@@ -5,33 +5,51 @@
 //  Created by Somia on 26/05/2024.
 //
 
-
 import XCTest
 @testable import SportssApp
 
 final class TestMock: XCTestCase {
     
-    let mockNetworkService = MockNetworkService(shouldReturnError: false) 
+    var network: NetworkServicing?
     
     override func setUpWithError() throws {
+        network = NetworkManager()
     }
-
+    
     override func tearDownWithError() throws {
+        network = nil
     }
-
-    func testMockFetchData() {
-        let expectation = self.expectation(description: "Fetch data")
-        
-        mockNetworkService.fetchDataFromApi(completionHandler: { (result: Result<Response?, Error>) in
-            switch result {
-            case .success(let data):
-                XCTAssertNotNil(data, "Response is nil")
-            case .failure(let error):
-                XCTFail("Error occurred: \(error.localizedDescription)")
+    
+    func testDecoding() {
+        let expectation = self.expectation(description: "decoding")
+        var decoded: [League]?
+        let fetchedData = """
+        [
+            {
+                "league_key": 205,
+                "league_name": "UEFA Champions League",
+                "country_name": "Europe",
+                "league_logo": ".png",
+                "country_logo": ".png"
+            },
+            {
+                "league_key": 300,
+                "league_name": "UEFA Champions League",
+                "country_name": "Europe",
+                "league_logo": ".png",
+                "country_logo": ".png"
             }
-            expectation.fulfill()
-        })
+        ]
+        """.data(using: .utf8)!
         
-        waitForExpectations(timeout: 6, handler: nil)
+        do {
+            decoded = try JSONDecoder().decode([League].self, from: fetchedData)
+        } catch {
+            XCTFail("error: \(error)")
+        }
+        XCTAssertNotNil(decoded, "failed")
+        XCTAssertEqual(decoded?.count, 2)
+        expectation.fulfill()
+        waitForExpectations(timeout: 5, handler: nil)
     }
 }

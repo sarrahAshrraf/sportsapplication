@@ -6,48 +6,27 @@
 //
 
 import Foundation
-import Alamofire
+@testable import SportssApp
 
-final class MockNetworkService {
-    
-    var shouldReturnError: Bool
-    
-    init(shouldReturnError: Bool) {
-        self.shouldReturnError = shouldReturnError
-    }
-    
-    func fetchDataFromApi<T: Decodable>(completionHandler: @escaping (Result<T, Error>) -> Void) {
-        DispatchQueue.global().async {
-            do {
-                sleep(1)
-                let jsonData = try JSONSerialization.data(withJSONObject: self.fakeJsonObj)
-                let result = try JSONDecoder().decode(T.self, from: jsonData)
-                completionHandler(.success(result))
-            } catch {
-                completionHandler(.failure(error))
+    final class MockNetworkService {
+        
+        var shouldReturnError: Bool
+        
+        init(shouldReturnError: Bool) {
+            self.shouldReturnError = shouldReturnError
+        }
+        
+        let response : Response = Response(success: 1, result: [League(),League(),League()])
+        
+        enum ResponseWithError: Error {
+            case responseError
+        }
+        
+        func fetchDataFromAPI<T>(url: String, completionHandler: @escaping (T?) -> Void) where T : Decodable {
+            if shouldReturnError {
+                completionHandler(nil)
+            } else {
+                completionHandler(response as? T)
             }
         }
     }
-    
-    private let fakeJsonObj: [String: Any] = [
-        "success": 1,
-        "result": [
-            [
-                "league_key": 4,
-                "league_name": "UEFA Europa League",
-                "country_key": 1,
-                "country_name": "eurocups",
-                "league_logo": "https://apiv2.allsportsapi.com/logo/logo_leagues/",
-                "country_logo": nil 
-            ],
-            [
-                "league_key": 1,
-                "league_name": "UEFA European Championship",
-                "country_key": 1,
-                "country_name": "eurocups",
-                "league_logo": nil,
-                "country_logo": nil
-            ]
-        ]
-    ]
-}

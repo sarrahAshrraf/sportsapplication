@@ -86,8 +86,6 @@ final class NetworkTest: XCTestCase {
            expectation.fulfill()
            waitForExpectations(timeout: 5, handler: nil)
        }
-
-
 }
 
 //import XCTest
