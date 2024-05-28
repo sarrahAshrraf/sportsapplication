@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Sports-->
+        <!--Sports View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SportsViewController" customModule="SportssApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeID" id="BYZ-38-t0r" customClass="SportsViewController" customModule="SportssApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -80,7 +80,6 @@
                             <constraint firstItem="tBm-YV-kGN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="oqo-fd-xqJ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Sports" image="sportscourt.fill" catalog="system" id="Byk-zK-4ns"/>
                     <navigationItem key="navigationItem" id="Tv1-Dg-nWV"/>
                     <connections>
                         <outlet property="homeCollectionView" destination="tBm-YV-kGN" id="85q-VC-ytR"/>
@@ -88,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1982.4427480916029" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="2909.1603053435115" y="-27.464788732394368"/>
         </scene>
         <!--Team Details View Controller-->
         <scene sceneID="Abd-4v-gwG">
@@ -163,7 +162,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w6t-1g-8qT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2700" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="3626.7175572519081" y="-27.464788732394368"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="l9R-ne-0WK">
@@ -198,17 +197,17 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Mi2-4E-dAI" kind="relationship" relationship="rootViewController" id="gXe-2v-hI4"/>
+                        <segue destination="CtH-YV-5fs" kind="relationship" relationship="rootViewController" id="2WD-rJ-ZvY"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hY-CS-zJ0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="210" y="-27"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Xig-mz-Z4h">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Mi2-4E-dAI" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarID" automaticallyAdjustsScrollViewInsets="NO" id="Mi2-4E-dAI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Qow-OW-8Qr"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jEy-fa-mgK">
@@ -217,13 +216,48 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="z7I-q5-EHd"/>
+                        <segue destination="5LO-R9-D4n" kind="relationship" relationship="viewControllers" id="z7I-q5-EHd"/>
                         <segue destination="pTq-bL-xaK" kind="relationship" relationship="viewControllers" id="R0k-ZT-Nxd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fR-a3-efQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1055.7251908396945" y="-27.464788732394368"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tJH-Wk-c5k">
+            <objects>
+                <viewController id="CtH-YV-5fs" customClass="ViewController" customModule="SportssApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ftP-TH-DyF">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="WSf-rt-cOY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="MNj-7k-btV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CQ0-Cg-6wy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="618" y="761"/>
+        </scene>
+        <!--Sports-->
+        <scene sceneID="bb9-zI-3YV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5LO-R9-D4n" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Sports" image="sportscourt.fill" catalog="system" id="Byk-zK-4ns"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5YR-iJ-sPu">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="9ak-4u-MWJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d16-aq-VEA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1982.4427480916029" y="-27.464788732394368"/>
         </scene>
     </scenes>
     <resources>
