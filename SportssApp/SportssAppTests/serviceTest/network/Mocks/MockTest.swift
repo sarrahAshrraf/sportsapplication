@@ -13,7 +13,7 @@ struct Response: Decodable {
     let result: [League]
 }
 
-final class LeagueDetailsViewModelTests: XCTestCase {
+final class MockNetwork: XCTestCase {
         
         var fakeNetwork: MockNetworkService?
         
