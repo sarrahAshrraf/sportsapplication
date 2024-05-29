@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04131BCF2C073DE000C7AB70 /* TestAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04131BCE2C073DE000C7AB70 /* TestAPITests.swift */; };
 		0417F90F2C032EB800B15529 /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417F90E2C032EB800B15529 /* MockNetworkService.swift */; };
 		0417F9112C03380800B15529 /* TestMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417F9102C03380800B15529 /* TestMock.swift */; };
 		04B6BD4A2BFB7A9000D79563 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B6BD492BFB7A9000D79563 /* HomeCollectionViewCell.swift */; };
@@ -79,6 +80,7 @@
 
 /* Begin PBXFileReference section */
 		00CD9B55F54BB5BC1B6A8F90 /* Pods-SportssApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportssApp.debug.xcconfig"; path = "Target Support Files/Pods-SportssApp/Pods-SportssApp.debug.xcconfig"; sourceTree = "<group>"; };
+		04131BCE2C073DE000C7AB70 /* TestAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAPITests.swift; sourceTree = "<group>"; };
 		0417F90E2C032EB800B15529 /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
 		0417F9102C03380800B15529 /* TestMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMock.swift; sourceTree = "<group>"; };
 		04B6BD492BFB7A9000D79563 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				0417F90D2C032E6700B15529 /* Mocks */,
+				04131BCE2C073DE000C7AB70 /* TestAPITests.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -275,7 +278,6 @@
 			isa = PBXGroup;
 			children = (
 				E755B7872BFE23A800D6CBFA /* LeagueDetailsViewController.swift */,
-				E74ACE9B2BFEF3D20048976B /* UpComingEventsCell.swift */,
 				E74ACE9C2BFEF3D20048976B /* UpComingEventsCell.xib */,
 				E74ACE9F2BFEF3E20048976B /* TeamCell.swift */,
 				E74ACEA02BFEF3E20048976B /* TeamCell.xib */,
@@ -418,6 +420,7 @@
 		E7E3B9C32BFB6F890025CC67 /* TeamDetails */ = {
 			isa = PBXGroup;
 			children = (
+				E74ACE9B2BFEF3D20048976B /* UpComingEventsCell.swift */,
 				04CAEF882BFE36ED002E3DBE /* viewModel */,
 				04CAEF872BFE36E4002E3DBE /* view */,
 			);
@@ -770,6 +773,7 @@
 			files = (
 				0417F9112C03380800B15529 /* TestMock.swift in Sources */,
 				0417F90F2C032EB800B15529 /* MockNetworkService.swift in Sources */,
+				04131BCF2C073DE000C7AB70 /* TestAPITests.swift in Sources */,
 				04B88D3C2C03BC6E00368D35 /* MockTest.swift in Sources */,
 				E73D40EF2C027F8F007AFBB8 /* DatabaseMangaerTest.swift in Sources */,
 				E7E3B9A02BFB68C30025CC67 /* SportssAppTests.swift in Sources */,

@@ -16,7 +16,7 @@ import Foundation
             self.shouldReturnError = shouldReturnError
         }
         
-        let response : Response = Response(success: 1, result: [League(),League(),League()])
+        let response : MockResponse = MockResponse(success: 1, result: [League(),League(),League()])
         
         enum ResponseWithError: Error {
             case responseError
@@ -29,4 +29,21 @@ import Foundation
                 completionHandler(response as? T)
             }
         }
+        
+        func fetchTeamDetails<T>(sportName: String, teamId: String, completionHandler: @escaping (T?) -> Void) where T: Decodable {
+                if shouldReturnError {
+                    completionHandler(nil)
+                } else {
+                    completionHandler(response as? T)
+                }
+            }
+        
+        func fetchTeamData<T>(leagueID: String, sportName: String, completionHandler: @escaping (T?) -> Void) where T: Decodable {
+            if shouldReturnError {
+                completionHandler(nil)
+            } else {
+                completionHandler(response as? T)
+            }
+        }
+        
     }

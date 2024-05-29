@@ -13,6 +13,7 @@ protocol NetworkServicing {
 }
 
 class NetworkManager: NetworkServicing {
+    
     func fetchDataFromAPI<T>(url: String, completionHandler: @escaping (T?) -> Void) where T: Decodable {
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil)
             .response { resp in

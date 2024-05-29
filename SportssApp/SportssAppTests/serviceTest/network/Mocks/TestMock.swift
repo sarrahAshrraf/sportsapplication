@@ -21,7 +21,7 @@ final class TestMock: XCTestCase {
     }
     
     func testDecoding() {
-        let expectation = self.expectation(description: "decoding")
+//        let expectation = self.expectation(description: "decoding")
         var decoded: [League]?
         let fetchedData = """
         [
@@ -49,7 +49,7 @@ final class TestMock: XCTestCase {
         }
         XCTAssertNotNil(decoded, "failed")
         XCTAssertEqual(decoded?.count, 2)
-        expectation.fulfill()
-        waitForExpectations(timeout: 5, handler: nil)
+//        expectation.fulfill()
+//        waitForExpectations(timeout: 5, handler: nil)
     }
 }
