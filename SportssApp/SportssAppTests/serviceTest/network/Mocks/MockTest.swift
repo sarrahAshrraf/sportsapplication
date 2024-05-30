@@ -34,24 +34,4 @@ final class MockNetwork: XCTestCase {
             }
         }
     }
-    
-    func testTeamDetails() {
-        fakeNetwork?.fetchTeamDetails(sportName: "football", teamId: "123") { (response: MockResponse?) in
-            if let response = response {
-                XCTAssertNotNil(response)
-            } else {
-                XCTFail("Failed to fetch team details.")
-            }
-        }
-    }
-    
-    func testTeamData() {
-        fakeNetwork?.fetchTeamData(leagueID: "66", sportName: "basketball") { (response: MockResponse?) in
-            if let response = response {
-                XCTAssertNotNil(response)
-            } else {
-                XCTFail("Failed to fetch team data.")
-            }
-        }
-    }
 }

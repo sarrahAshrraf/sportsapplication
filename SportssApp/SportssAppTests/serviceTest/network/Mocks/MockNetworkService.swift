@@ -30,20 +30,4 @@ import Foundation
             }
         }
         
-        func fetchTeamDetails<T>(sportName: String, teamId: String, completionHandler: @escaping (T?) -> Void) where T: Decodable {
-                if shouldReturnError {
-                    completionHandler(nil)
-                } else {
-                    completionHandler(response as? T)
-                }
-            }
-        
-        func fetchTeamData<T>(leagueID: String, sportName: String, completionHandler: @escaping (T?) -> Void) where T: Decodable {
-            if shouldReturnError {
-                completionHandler(nil)
-            } else {
-                completionHandler(response as? T)
-            }
-        }
-        
     }

@@ -10,6 +10,7 @@
 		04131BCF2C073DE000C7AB70 /* TestAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04131BCE2C073DE000C7AB70 /* TestAPITests.swift */; };
 		0417F90F2C032EB800B15529 /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417F90E2C032EB800B15529 /* MockNetworkService.swift */; };
 		0417F9112C03380800B15529 /* TestMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417F9102C03380800B15529 /* TestMock.swift */; };
+		049C6E462C0776EE00A93E2A /* LeagueViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C6E452C0776EE00A93E2A /* LeagueViewModelTest.swift */; };
 		04B6BD4A2BFB7A9000D79563 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B6BD492BFB7A9000D79563 /* HomeCollectionViewCell.swift */; };
 		04B6BD4E2BFB7F9000D79563 /* SportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B6BD4D2BFB7F9000D79563 /* SportsViewController.swift */; };
 		04B88D3C2C03BC6E00368D35 /* MockTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B88D3B2C03BC6E00368D35 /* MockTest.swift */; };
@@ -83,6 +84,7 @@
 		04131BCE2C073DE000C7AB70 /* TestAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAPITests.swift; sourceTree = "<group>"; };
 		0417F90E2C032EB800B15529 /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
 		0417F9102C03380800B15529 /* TestMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMock.swift; sourceTree = "<group>"; };
+		049C6E452C0776EE00A93E2A /* LeagueViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueViewModelTest.swift; sourceTree = "<group>"; };
 		04B6BD492BFB7A9000D79563 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		04B6BD4D2BFB7F9000D79563 /* SportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsViewController.swift; sourceTree = "<group>"; };
 		04B88D3B2C03BC6E00368D35 /* MockTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTest.swift; sourceTree = "<group>"; };
@@ -181,6 +183,22 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		049C6E432C07765700A93E2A /* APITest */ = {
+			isa = PBXGroup;
+			children = (
+				04131BCE2C073DE000C7AB70 /* TestAPITests.swift */,
+			);
+			path = APITest;
+			sourceTree = "<group>";
+		};
+		049C6E442C07766D00A93E2A /* ViewModelTest */ = {
+			isa = PBXGroup;
+			children = (
+				049C6E452C0776EE00A93E2A /* LeagueViewModelTest.swift */,
+			);
+			path = ViewModelTest;
+			sourceTree = "<group>";
+		};
 		04CAEF872BFE36E4002E3DBE /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,8 +260,9 @@
 		E7438AD42C0132CB002D6422 /* network */ = {
 			isa = PBXGroup;
 			children = (
+				049C6E442C07766D00A93E2A /* ViewModelTest */,
+				049C6E432C07765700A93E2A /* APITest */,
 				0417F90D2C032E6700B15529 /* Mocks */,
-				04131BCE2C073DE000C7AB70 /* TestAPITests.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -776,6 +795,7 @@
 				04131BCF2C073DE000C7AB70 /* TestAPITests.swift in Sources */,
 				04B88D3C2C03BC6E00368D35 /* MockTest.swift in Sources */,
 				E73D40EF2C027F8F007AFBB8 /* DatabaseMangaerTest.swift in Sources */,
+				049C6E462C0776EE00A93E2A /* LeagueViewModelTest.swift in Sources */,
 				E7E3B9A02BFB68C30025CC67 /* SportssAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
