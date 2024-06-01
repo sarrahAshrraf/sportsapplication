@@ -22,16 +22,6 @@ class UpComingEventsCell: UICollectionViewCell {
     }
     func configure(with event: Event) {
         scoreLabel.text = "\(event.eventDay ?? "date")\n \(event.eventTime ?? "date")"
-//        if event.finalResult == "-" {
-//                    scoreLabel.text = "N/A"
-//                } else {
-//                    scoreLabel.text = event.finalResult
-//                }
-//        if let leagueName = event.leagueName {
-//            self.leagueName.text = leagueName
-//           } else {
-//               leagueName.text = "Unknown League"
-//           }
         roundLabel.text = event.leagueRound
         homeTeamName.text = event.eventHomeTeam
         awayTeamName.text = event.eventAwayTeam

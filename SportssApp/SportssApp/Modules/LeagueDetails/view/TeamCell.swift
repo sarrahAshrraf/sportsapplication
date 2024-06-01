@@ -26,7 +26,7 @@ class TeamCell: UICollectionViewCell {
         print(player.player_name)
         print(player.player_key)
 
-        teamImg.image = UIImage(named: "player") // You can set a placeholder image or leave it empty
+        teamImg.image = UIImage(named: "player")
     }
 
 }

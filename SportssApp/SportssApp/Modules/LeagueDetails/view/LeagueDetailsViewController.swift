@@ -39,14 +39,6 @@ class LeagueDetailsViewController: UIViewController , UICollectionViewDelegate, 
                    self?.updateFavoriteButton()
                }
 
-        indicator = UIActivityIndicatorView(style: .large)
-        indicator.center = self.view.center
-        self.view.addSubview(indicator)
-        if viewModel.resultUpComingEvents?.isEmpty ?? true {
-                indicator.startAnimating()
-            } else {
-                indicator.stopAnimating()
-            }
     }
 
 
@@ -62,11 +54,16 @@ class LeagueDetailsViewController: UIViewController , UICollectionViewDelegate, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        indicator = UIActivityIndicatorView(style: .large)
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+        indicator.startAnimating()
+        
 //        leaguesCollectionView.dataSource = self
-        guard let collectionView = leaguesCollectionView else {
-            return
-        }
-        collectionView.dataSource = self
+//        guard let collectionView = leaguesCollectionView else {
+//            return
+//        }
+        leaguesCollectionView.dataSource = self
 
         leaguesCollectionView.delegate = self
         let eventCell = UINib(nibName: "UpComingEventsCell", bundle: nil)
@@ -367,39 +364,4 @@ extension LeagueDetailsViewController{
     }
 
     
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//      let eventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpComingEventsCell", for: indexPath) as! UpComingEventsCell
-//        let latestEventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventsCell", for: indexPath) as! LatestEventsCell
-//      let teamCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! TeamCell
-//
-//      makeCellBorderRadius(cell: eventCell)
-//        makeCellBorderRadius(cell: latestEventCell)
-//      makeCellBorderRadius(cell: teamCell)
-//
-//      if viewModel.resultUpComingEvents?.count ?? 0 == 0{
-//        switch indexPath.section {
-//        case 0:
-//          latestEventCell.configure(with:  (viewModel.latestEventResult?[indexPath.row])!)
-//          return latestEventCell
-//        default:
-//          teamCell.configure(with:  (viewModel.teams?[indexPath.row])!)
-//          return teamCell
-//        }
-//      } else {
-//        switch indexPath.section {
-//        case 0:
-//          eventCell.configure(with: (viewModel.resultUpComingEvents?[indexPath.row])!)
-//          return eventCell
-//        case 1:
-//            latestEventCell.configure(with:  (viewModel.latestEventResult?[indexPath.row])!)
-//          return latestEventCell
-//        default:
-//          teamCell.configure(with: (viewModel.teams?[indexPath.row])!)
-//          return teamCell
-//        }
-//      }
-//    }
-
-
-
   }
