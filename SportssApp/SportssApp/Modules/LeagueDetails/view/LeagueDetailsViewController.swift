@@ -11,6 +11,8 @@ class LeagueDetailsViewController: UIViewController , UICollectionViewDelegate, 
     @IBOutlet weak var favoriteBtn: UIBarButtonItem!
     @IBAction func favoriteButton(_ sender: UIBarButtonItem) {
         favoriteButtonTapped()
+        NotificationCenter.default.post(name: NSNotification.Name("FavoriteUpdated"), object: nil)
+
     }
     @IBAction func backButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -55,6 +57,7 @@ class LeagueDetailsViewController: UIViewController , UICollectionViewDelegate, 
             viewModel.saveLeagueToDB(leagueId: leagueId, leagueName: leagueName, leagueImg: leagueImage, sportName: sportName)
         }
         updateFavoriteButton()
+
     }
 
     override func viewDidLoad() {

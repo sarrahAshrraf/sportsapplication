@@ -44,6 +44,17 @@ class FavoriteViewController: UITableViewController {
         } catch {
             print("Unable to start notifier")
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(handleFavoriteUpdatedNotification), name: NSNotification.Name("FavoriteUpdated"), object: nil)
+    }
+
+    @objc private func handleFavoriteUpdatedNotification() {
+        viewModel.fetchAllLeagues()
+        tableView.reloadData()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("FavoriteUpdated"), object: nil)
     }
     
 
@@ -68,7 +79,7 @@ class FavoriteViewController: UITableViewController {
         if let imageUrl = league.leagueImg, !imageUrl.isEmpty {
             cell.favoriteimg.kf.setImage(with: URL(string: imageUrl))
         } else {
-            cell.favoriteimg.image = UIImage(named: "torphy")
+            cell.favoriteimg.image = UIImage(named: "tor")
         }
 
         return cell
@@ -87,6 +98,7 @@ class FavoriteViewController: UITableViewController {
                 guard let self = self else { return }
                 let leagueIdToDelete = self.viewModel.league(at: indexPath).leagueId
                 self.viewModel.deleteLeague(leagueId: Int(leagueIdToDelete))
+                
                 tableView.reloadData()
             }
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -111,7 +123,10 @@ class FavoriteViewController: UITableViewController {
             leagueDetailsVC.leagueId = Int(selectedLeague.leagueId)
             leagueDetailsVC.leagueName = selectedLeague.leagueName ?? ""
             leagueDetailsVC.sportName = selectedLeague.sportName ?? ""
-            present(leagueDetailsVC, animated: true, completion: nil)
+            let navigationController = UINavigationController(rootViewController: leagueDetailsVC)
+            
+            leagueDetailsVC.modalPresentationStyle = .fullScreen
+            present(navigationController, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "No Internet Connection", message: "You must connect to the internet to see the League details.", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -124,6 +139,8 @@ class FavoriteViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.fetchAllLeagues()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleFavoriteUpdatedNotification), name: NSNotification.Name("FavoriteUpdated"), object: nil)
+
         tableView.reloadData()
     }
     

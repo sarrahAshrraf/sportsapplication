@@ -24,7 +24,9 @@ class FavoriteLeaguesViewModel {
         let allLeagues = databaseManager.fetchAllLeagues()
         let groupedLeagues = Dictionary(grouping: allLeagues, by: { $0.sportName })
         leagueSections = groupedLeagues.map { LeagueSection(sportName: $0.key ?? "", leagues: $0.value) }
+        binddbToViewController()
     }
+
 
     func deleteLeague(leagueId: Int) {
         databaseManager.deleteLeague(leagueId: leagueId)

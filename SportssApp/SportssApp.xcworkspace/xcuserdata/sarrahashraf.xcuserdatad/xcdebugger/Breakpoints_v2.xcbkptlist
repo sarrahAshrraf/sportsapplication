@@ -14,25 +14,9 @@
             filePath = "SportssAppTests/serviceTest/network/NetworkTest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "testDecoding_ShouldPassed()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8919E796-2AAF-42C3-B6FC-4B2EF5549398"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SportssAppTests/serviceTest/network/NetworkTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "testgetSportAllLeaguesData_ShouldFail()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
