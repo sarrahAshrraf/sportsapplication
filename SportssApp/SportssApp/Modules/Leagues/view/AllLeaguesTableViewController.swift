@@ -62,6 +62,16 @@ class AllLeaguesTableViewController: UITableViewController {
                 cell.leagueImg.image = UIImage(named: "tor")
             }
             
+            
+            cell.youtubeAction = { [weak self] in
+                let alert = UIAlertController(title: "No youTube Found", message: "There is no youtube for this league", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(okAction)
+                self?.present(alert, animated: true, completion: nil)
+               
+                
+            }
+            
         }
         //        cell.buttonAction = { [weak self] in
         //                        guard let self = self else { return }

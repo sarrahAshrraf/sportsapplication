@@ -70,9 +70,17 @@ extension SportsViewController: UICollectionViewDelegateFlowLayout{
         if viewModel!.checkInternetConnectivity(){
 
             let leaguesVC = AllLeaguesTableViewController()
+            var sportName = selectedSport.sportName.lowercased()
             leaguesVC.sportName = selectedSport.sportName.lowercased()
             print(selectedSport.sportName)
-            navigationController?.pushViewController(leaguesVC, animated: true)
+            switch sportName {
+            case "criket" :
+                let alert = UIAlertController(title: "No Data", message: "There is no data to show now, try again later.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                present(alert, animated: true)
+            default:
+                navigationController?.pushViewController(leaguesVC, animated: true)
+            }
         } else {
             showAlertNoNetwork()
         }
