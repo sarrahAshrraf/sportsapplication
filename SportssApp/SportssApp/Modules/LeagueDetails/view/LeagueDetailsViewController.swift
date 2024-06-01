@@ -237,8 +237,11 @@ extension LeagueDetailsViewController{
                case 0:
                    headerView.headerTitle.text = "Latest Events"
                default:
-                   headerView.headerTitle.text = "Teams"
-               }
+                   if sportName == "tennis" {
+                       headerView.headerTitle.text = "Players"
+                   } else {
+                       headerView.headerTitle.text = "Teams"
+                   }               }
            } else {
                switch indexPath.section {
                case 0:
@@ -246,7 +249,13 @@ extension LeagueDetailsViewController{
                case 1:
                    headerView.headerTitle.text = "Latest Events"
                default:
-                   headerView.headerTitle.text = "Teams"
+                   
+                   if sportName == "tennis" {
+                       headerView.headerTitle.text = "Players"
+                   } else {
+                       headerView.headerTitle.text = "Teams"
+                   }
+                   
                }
            }
            
