@@ -101,7 +101,8 @@ class FavoriteViewController: UITableViewController {
     //          cell.contentView.layer.masksToBounds = true
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if reachability.connection != .unavailable {
+        if viewModel.checkInternetConnectivity(){
+//        if reachability.connection != .unavailable {
             let selectedLeague = viewModel.league(at: indexPath)
             let storyboard = UIStoryboard(name: "ScreensStoryBoard", bundle: nil)
             guard let leagueDetailsVC = storyboard.instantiateViewController(identifier: "leagueDetailsVC") as? LeagueDetailsViewController else {

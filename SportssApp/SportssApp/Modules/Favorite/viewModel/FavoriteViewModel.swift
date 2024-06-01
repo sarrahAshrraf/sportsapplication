@@ -46,6 +46,11 @@ class FavoriteLeaguesViewModel {
     func sportName(forSection section: Int) -> String {
         return leagueSections[section].sportName
     }
+    
+    func checkInternetConnectivity()->Bool{
+        
+        return Connectivity.connectivityInstance.isConnectedToInternet()
+    }
 }
 
 

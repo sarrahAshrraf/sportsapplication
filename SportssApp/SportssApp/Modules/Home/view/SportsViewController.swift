@@ -67,7 +67,8 @@ extension SportsViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedSport = viewModel!.sports[indexPath.item]
 
-        if reachability.connection != .unavailable {
+        if viewModel!.checkInternetConnectivity(){
+
             let leaguesVC = AllLeaguesTableViewController()
             leaguesVC.sportName = selectedSport.sportName.lowercased()
             print(selectedSport.sportName)
