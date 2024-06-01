@@ -13,6 +13,8 @@ class LeagueCell: UITableViewCell {
     @IBOutlet weak var leagueLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        leagueImg.layer.cornerRadius = leagueImg.frame.size.width / 2
+               leagueImg.clipsToBounds = true
         // Initialization code
     }
 

@@ -12,13 +12,6 @@ import XCTest
 @testable import SportssApp
 
 
-//struct Response<T>: Decodable where T: Decodable{
-//
-//  var success: Int?
-//  var result: [T]?
-//
-//}
-
 
 final class NetworkTest: XCTestCase {
 
@@ -105,7 +98,7 @@ final class NetworkTest: XCTestCase {
     
     
     func testTeamData_ShouldPassed() {
-            let url = "https://apiv2.allsportsapi.com/football/?&met=Teams&teamId=13&APIkey=995239db0133e854b94ff543d0f5c1e93a86c6ee8d60df34e502c87e932bbb6d"
+            let url = "https://apiv2.allsportsapi.com/football/?&met=Teams&teamId=13&APIkey=959d4102f918e5ca96058a64938e54c07883cbfef2dbbfd7688e232fe8f0042a"
             let expectation = XCTestExpectation(description: "Fetch data from API")
         networkService!.fetchDataFromAPI(url: url) { (response: Response<Team>?) in
                 XCTAssertNotNil(response)

@@ -63,6 +63,7 @@
 		E7E3B9D32BFB7B840025CC67 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3B9D22BFB7B840025CC67 /* FavoriteViewModel.swift */; };
 		E7E3B9DA2BFB876A0025CC67 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E3B9D92BFB876A0025CC67 /* NetworkManager.swift */; };
 		E7E3B9DC2BFB889F0025CC67 /* ScreensStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7E3B9DB2BFB889F0025CC67 /* ScreensStoryBoard.storyboard */; };
+		E7F5EF7C2C0B504C0096F476 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F5EF7B2C0B504C0096F476 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,7 @@
 		E7E3B9D22BFB7B840025CC67 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		E7E3B9D92BFB876A0025CC67 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E7E3B9DB2BFB889F0025CC67 /* ScreensStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScreensStoryBoard.storyboard; sourceTree = "<group>"; };
+		E7F5EF7B2C0B504C0096F476 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -393,6 +395,7 @@
 				E7E3B9C62BFB70230025CC67 /* Response.swift */,
 				E7E3B9C82BFB70410025CC67 /* Event.swift */,
 				04CAEF932BFE42E2002E3DBE /* Team.swift */,
+				E7F5EF7B2C0B504C0096F476 /* Player.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				E74ACEA42BFEF4100048976B /* LeagueDetailsViewModel.swift in Sources */,
 				E74ACE9D2BFEF3D20048976B /* UpComingEventsCell.swift in Sources */,
 				E74ACEA12BFEF3E20048976B /* TeamCell.swift in Sources */,
+				E7F5EF7C2C0B504C0096F476 /* Player.swift in Sources */,
 				04E94FBC2C0097DC00A9C735 /* FavoriteTableViewCell.swift in Sources */,
 				E7E3B9BC2BFB68E70025CC67 /* League.swift in Sources */,
 				E7E3B9CF2BFB7B600025CC67 /* FavoriteViewController.swift in Sources */,

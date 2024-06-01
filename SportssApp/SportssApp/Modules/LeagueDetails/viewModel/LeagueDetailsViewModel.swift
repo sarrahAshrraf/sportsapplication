@@ -39,11 +39,66 @@ class LeagueDetailsViewModel{
       }
     }
     
+    var players: [TennisPlayer]? = []
+    {
+      didSet{
+        bindResultToViewController()
+      }
+    }
+    
+    var tennisUpComingEvents : [TennisEvent]? = [] {
+        didSet{
+            bindResultToViewController()
+        }
+    }
+    
+    var tennislatestEventResult: [TennisEvent]? = []
+    {
+      didSet{
+        bindResultToViewController()
+      }
+    }
+    
+    
     var isFav: Bool = false {
       didSet{
         bindDBToViewController()
       }
     }
+    
+    
+    func fetchTennisUpComingEvents(sportName : String, leagueID: String, startDate: String, endDate: String, eventType: EventType){
+        let leagueDetailsUrl = "https://apiv2.allsportsapi.com/\(sportName)?met=Fixtures&leagueId=\(leagueID)&from=\(startDate)&to=\(endDate)&APIkey=\(Constants.apiKey)"
+        
+        NetworkManager().fetchDataFromAPI(url: leagueDetailsUrl) { [weak self] (result: Response?) in
+            self?.tennisUpComingEvents = result?.result
+            if let result = result {
+                print(result)
+                print("==========Result received in upcoming events")
+
+            } else {
+                print("No result received in upcoming events")
+            }
+        }
+    }
+    
+    
+    
+    func fetchTennisPlayersData(leagueID: String, sportName: String) {
+        let teamURL = "https://apiv2.allsportsapi.com/\(sportName)/?&met=Players&leagueId=\(leagueID)&APIkey=\(Constants.apiKey)"
+        
+        NetworkManager().fetchDataFromAPI(url: teamURL) { [weak self] (result: Response?) in
+            self?.players = result?.result
+            
+            if let result = result {
+                print("Players data fetched")
+                print(result)
+            } else {
+                print("No result received in players")
+            }
+        }
+    }
+
     
     
     

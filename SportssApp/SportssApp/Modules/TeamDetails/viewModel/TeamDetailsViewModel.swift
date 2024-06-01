@@ -28,3 +28,7 @@ class TeamDetailsViewModel{
     }
 }
 
+
+//tennis
+//    https://apiv2.allsportsapi.com/tennis/?&met=Players&playerId=1905&APIkey=959d4102f918e5ca96058a64938e54c07883cbfef2dbbfd7688e232fe8f0042a
+

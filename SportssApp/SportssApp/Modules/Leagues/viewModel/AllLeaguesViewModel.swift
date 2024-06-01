@@ -26,6 +26,10 @@ func getData(sportName : String){
     }
 }
     
+    func checkInternetConnectivity()->Bool{
+        
+        return Connectivity.connectivityInstance.isConnectedToInternet()
+    }
     
     //https://apiv2.allsportsapi.com/football/?&met=Videos&eventId=86392&APIkey=22ad8dd732a55a3fe4d2f4df34998396b28f2b23f9020add2c4c977342017644
     

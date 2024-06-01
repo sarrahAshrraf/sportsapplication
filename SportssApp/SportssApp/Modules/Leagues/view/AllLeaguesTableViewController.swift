@@ -56,10 +56,10 @@ class AllLeaguesTableViewController: UITableViewController {
                 if let url = URL(string: logoURL) {
                     cell.leagueImg.kf.setImage(with: url)
                 } else {
-                    cell.leagueImg.image = UIImage(named: "torphy")
+                    cell.leagueImg.image = UIImage(named: "tor")
                 }
             } else {
-                cell.leagueImg.image = UIImage(named: "torphy")
+                cell.leagueImg.image = UIImage(named: "tor")
             }
             
         }
@@ -81,15 +81,25 @@ class AllLeaguesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "ScreensStoryBoard", bundle: nil)
         if let leagueDetailsVC = storyboard.instantiateViewController(withIdentifier: "leagueDetailsVC") as? LeagueDetailsViewController {
-            leagueDetailsVC.sportName = self.sportName
-            leagueDetailsVC.leagueId = viewModel.result?[indexPath.row].league_key ?? 0
-            leagueDetailsVC.leagueName = viewModel.result?[indexPath.row].league_name ?? ""
-            leagueDetailsVC.leagueImage = viewModel.result?[indexPath.row].league_logo ?? ""
-            let navigationController = UINavigationController(rootViewController: leagueDetailsVC)
-
-             leagueDetailsVC.modalPresentationStyle = .fullScreen
-             present(navigationController, animated: true, completion: nil)
-//            navigationController?.pushViewController(leagueDetailsVC, animated: true)
+            if viewModel.checkInternetConnectivity(){
+                
+                leagueDetailsVC.sportName = self.sportName
+                leagueDetailsVC.leagueId = viewModel.result?[indexPath.row].league_key ?? 0
+                leagueDetailsVC.leagueName = viewModel.result?[indexPath.row].league_name ?? ""
+                leagueDetailsVC.leagueImage = viewModel.result?[indexPath.row].league_logo ?? ""
+                let navigationController = UINavigationController(rootViewController: leagueDetailsVC)
+                
+                leagueDetailsVC.modalPresentationStyle = .fullScreen
+                present(navigationController, animated: true, completion: nil)
+                //            navigationController?.pushViewController(leagueDetailsVC, animated: true)
+                print(viewModel.result?[indexPath.row].league_key ?? 0) //10887 tennis
+            }else {
+                let alert = UIAlertController(title: "No Internet Connection", message: "You must connect to the internet to see the Leagues", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(okAction)
+                present(alert, animated: true, completion: nil)
+                
+            }
         }
     }
 

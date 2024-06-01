@@ -97,13 +97,30 @@ class LeagueDetailsViewController: UIViewController , UICollectionViewDelegate, 
         }
     
     func fetchNetworkData(){
-        viewModel.fetchUpComingEvents(sportName: sportName, leagueID: "\(String(leagueId))", startDate: Utilities.calculateCurrentDate(), endDate: Utilities.calculateEndDate(), eventType: .upcoming)
-        viewModel.fetchLatestEvents(sportName: sportName, leagueID: "\(String(leagueId))", startDate: Utilities.calculateStartDate(), endDate: Utilities.calculateCurrentDate(), eventType: .latest)
+        switch sportName {
+           case "football":
+            viewModel.fetchUpComingEvents(sportName: sportName, leagueID: "\(String(leagueId))", startDate: Utilities.calculateCurrentDate(), endDate: Utilities.calculateEndDate(), eventType: .upcoming)
+            viewModel.fetchLatestEvents(sportName: sportName, leagueID: "\(String(leagueId))", startDate: Utilities.calculateStartDate(), endDate: Utilities.calculateCurrentDate(), eventType: .latest)
+            viewModel.fetchTeamData( leagueID:"\(leagueId)", sportName: sportName)
+
+           case "tennis":
+            viewModel.fetchTennisUpComingEvents(sportName: sportName, leagueID: "\(String(leagueId))", startDate: Utilities.calculateCurrentDate(), endDate: Utilities.calculateEndDate(), eventType: .upcoming)
+            viewModel.fetchLatestEvents(sportName: sportName, leagueID: "\(String(leagueId))", startDate: Utilities.calculateStartDate(), endDate: Utilities.calculateCurrentDate(), eventType: .latest)
+
+            viewModel.fetchTennisPlayersData( leagueID:"\(leagueId)", sportName: sportName)
+
+            
+           default:
+               print("Unsupported sport: \(sportName)")
+               return
+           }
+        print("===================ID ")
+        print("\(String(leagueId))")
+
         
         print (sportName)
         print (leagueId)
 
-        viewModel.fetchTeamData( leagueID:"\(leagueId)", sportName: sportName)
         
     }
 
@@ -219,9 +236,6 @@ extension LeagueDetailsViewController{
                switch indexPath.section {
                case 0:
                    headerView.headerTitle.text = "Latest Events"
-//               case 1:
-//                   headerView.headerTitle.text = "Latest Events"
-
                default:
                    headerView.headerTitle.text = "Teams"
                }
@@ -240,26 +254,76 @@ extension LeagueDetailsViewController{
        }
        
 
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            if viewModel.resultUpComingEvents?.count ?? 0 == 0 {
+                switch section {
+                case 0:
+                    return viewModel.latestEventResult?.count ?? 0
+                default:
+                    if sportName == "tennis" {
+                        return viewModel.players?.count ?? 0
+                    } else {
+                        return viewModel.teams?.count ?? 0
+                    }
+                }
+            } else {
+                switch section {
+                case 0:
+                    return viewModel.resultUpComingEvents?.count ?? 0
+                case 1:
+                    return viewModel.latestEventResult?.count ?? 0
+                default:
+                    if sportName == "tennis" {
+                        return viewModel.players?.count ?? 0
+                    } else {
+                        return viewModel.teams?.count ?? 0
+                    }
+                }
+            }
+        }
 
-    if viewModel.resultUpComingEvents?.count ?? 0 == 0{
-      switch section{
-      case 0:
-        return viewModel.latestEventResult?.count ?? 0
-      default:
-        return viewModel.teams?.count ?? 0
-      }
-    } else {
-      switch section{
-      case 0:
-        return viewModel.resultUpComingEvents?.count ?? 0
-      case 1:
-        return viewModel.latestEventResult?.count ?? 0
-      default:
-        return viewModel.teams?.count ?? 0
-      }
-    }
-  }
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let eventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpComingEventsCell", for: indexPath) as! UpComingEventsCell
+            let latestEventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventsCell", for: indexPath) as! LatestEventsCell
+            let teamCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! TeamCell
+
+            makeCellBorderRadius(cell: eventCell)
+            makeCellBorderRadius(cell: latestEventCell)
+            makeCellBorderRadius(cell: teamCell)
+
+            if viewModel.resultUpComingEvents?.count ?? 0 == 0 {
+                switch indexPath.section {
+                case 0:
+                    latestEventCell.configure(with: (viewModel.latestEventResult?[indexPath.row])!)
+                    return latestEventCell
+                default:
+                    if sportName == "tennis" {
+                        teamCell.configure(with: (viewModel.players?[indexPath.row])!)
+                    } else {
+                        teamCell.configure(with: (viewModel.teams?[indexPath.row])!)
+                    }
+                    return teamCell
+                }
+            } else {
+                switch indexPath.section {
+                case 0:
+                    eventCell.configure(with: (viewModel.resultUpComingEvents?[indexPath.row])!)
+                    return eventCell
+                case 1:
+                    latestEventCell.configure(with: (viewModel.latestEventResult?[indexPath.row])!)
+                    return latestEventCell
+                default:
+                    if sportName == "tennis" {
+                        print("inside tennis if")
+                        teamCell.configure(with: (viewModel.players?[indexPath.row])!)
+                    } else {
+                        teamCell.configure(with: (viewModel.teams?[indexPath.row])!)
+                    }
+                    return teamCell
+                }
+            }
+        }
+    
 
   func makeCellBorderRadius(cell: UICollectionViewCell){
     cell.contentView.backgroundColor = .white
@@ -292,82 +356,39 @@ extension LeagueDetailsViewController{
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-      let eventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpComingEventsCell", for: indexPath) as! UpComingEventsCell
-        let latestEventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventsCell", for: indexPath) as! LatestEventsCell
-      let teamCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! TeamCell
-
-      makeCellBorderRadius(cell: eventCell)
-        makeCellBorderRadius(cell: latestEventCell)
-      makeCellBorderRadius(cell: teamCell)
-
-      if viewModel.resultUpComingEvents?.count ?? 0 == 0{
-        switch indexPath.section {
-        case 0:
-          latestEventCell.configure(with:  (viewModel.latestEventResult?[indexPath.row])!)
-          return latestEventCell
-        default:
-          teamCell.configure(with:  (viewModel.teams?[indexPath.row])!)
-          return teamCell
-        }
-      } else {
-        switch indexPath.section {
-        case 0:
-          eventCell.configure(with: (viewModel.resultUpComingEvents?[indexPath.row])!)
-          return eventCell
-        case 1:
-            latestEventCell.configure(with:  (viewModel.latestEventResult?[indexPath.row])!)
-          return latestEventCell
-        default:
-          teamCell.configure(with: (viewModel.teams?[indexPath.row])!)
-          return teamCell
-        }
-      }
-    }
-
 //    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let eventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpComingEventsCell", for: indexPath) as! UpComingEventsCell
-//        let teamCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! TeamCell
+//      let eventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpComingEventsCell", for: indexPath) as! UpComingEventsCell
+//        let latestEventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventsCell", for: indexPath) as! LatestEventsCell
+//      let teamCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! TeamCell
 //
-//        makeCellBorderRadius(cell: eventCell)
-//        makeCellBorderRadius(cell: teamCell)
+//      makeCellBorderRadius(cell: eventCell)
+//        makeCellBorderRadius(cell: latestEventCell)
+//      makeCellBorderRadius(cell: teamCell)
 //
-//        if let resultUpComingEvents = viewModel.resultUpComingEvents, resultUpComingEvents.isEmpty {
-//            switch indexPath.section {
-//            case 1:
-//                if let event = viewModel.latestEventResult?[indexPath.row] {
-//                    eventCell.configure(with: event)
-//                    eventCell.scoreLabel.text = (event.finalResult == "-") ? "N/A" : event.finalResult
-//                }
-//                return eventCell
-//            default:
-//                if let team = viewModel.teams?[indexPath.row] {
-//                    teamCell.configure(with: team)
-//                }
-//                return teamCell
-//            }
-//        } else {
-//            switch indexPath.section {
-//            case 0:
-//                if let event = viewModel.resultUpComingEvents?[indexPath.row] {
-//                    eventCell.configure(with: event)
-//                    eventCell.scoreLabel.text = (event.finalResult == "-") ? "N/A" : event.finalResult
-//                }
-//                return eventCell
-//            case 1:
-//                if let event = viewModel.latestEventResult?[indexPath.row] {
-//                    eventCell.configure(with: event)
-//                    eventCell.scoreLabel.text = (event.finalResult == "-") ? "N/A" : event.finalResult
-//                }
-//                return eventCell
-//            default:
-//                if let team = viewModel.teams?[indexPath.row] {
-//                    teamCell.configure(with: team)
-//                }
-//                return teamCell
-//            }
+//      if viewModel.resultUpComingEvents?.count ?? 0 == 0{
+//        switch indexPath.section {
+//        case 0:
+//          latestEventCell.configure(with:  (viewModel.latestEventResult?[indexPath.row])!)
+//          return latestEventCell
+//        default:
+//          teamCell.configure(with:  (viewModel.teams?[indexPath.row])!)
+//          return teamCell
 //        }
+//      } else {
+//        switch indexPath.section {
+//        case 0:
+//          eventCell.configure(with: (viewModel.resultUpComingEvents?[indexPath.row])!)
+//          return eventCell
+//        case 1:
+//            latestEventCell.configure(with:  (viewModel.latestEventResult?[indexPath.row])!)
+//          return latestEventCell
+//        default:
+//          teamCell.configure(with: (viewModel.teams?[indexPath.row])!)
+//          return teamCell
+//        }
+//      }
 //    }
+
 
 
   }

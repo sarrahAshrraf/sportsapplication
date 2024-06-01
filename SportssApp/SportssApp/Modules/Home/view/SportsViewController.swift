@@ -12,7 +12,7 @@ import UIKit
 import Reachability
 
 class SportsViewController: UIViewController,UICollectionViewDelegate , UICollectionViewDataSource {
-    let reachability = try! Reachability()
+//    let reachability = try! Reachability()
 
    
     @IBOutlet weak var homeCollectionView: UICollectionView!
@@ -25,17 +25,17 @@ class SportsViewController: UIViewController,UICollectionViewDelegate , UICollec
         homeCollectionView.dataSource = self
               homeCollectionView.delegate = self
         homeCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
-        try? reachability.startNotifier()
+//        try? reachability.startNotifier()
 
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        try? reachability.startNotifier()
+//        try? reachability.startNotifier()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        reachability.stopNotifier()
+//        reachability.stopNotifier()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
