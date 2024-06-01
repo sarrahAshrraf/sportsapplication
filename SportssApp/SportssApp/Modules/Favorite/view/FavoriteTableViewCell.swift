@@ -1,3 +1,5 @@
+
+
 //
 //  FavoriteTableViewCell.swift
 //  SportssApp
@@ -29,3 +31,4 @@ class FavoriteTableViewCell: UITableViewCell {
     }
     
 }
+
