@@ -22,6 +22,7 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate , UITabl
     var viewModel: TeamDetailsViewModel!
     var indicator: UIActivityIndicatorView!
     var sportName = ""
+    var playerID = 0
     var teamId = 0
     
     override func viewDidLoad() {
@@ -43,26 +44,52 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate , UITabl
         
     }
     func requestData(){
-        viewModel.getTeamDetails(sportName: sportName, teamId: "\(teamId)")
-        
+        switch sportName{
+        case "football" :   viewModel.getTeamDetails(sportName: sportName, teamId: "\(teamId)")
+        case "tennis" : viewModel.getPlayerDetails(sportName: sportName, playerID: "\(playerID)")
+        default:
+            viewModel.getTeamDetails(sportName: sportName, teamId: "\(teamId)")
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows for the section
-        return viewModel.teams?.players?.count ?? 0
+        return sportName == "football" ? viewModel.teams?.players?.count ?? 0 : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TeamDetailsTableViewCell", for: indexPath) as! TeamDetailsTableViewCell
-        if let player = viewModel.teams?.players?[indexPath.row]{
-            
-            cell.playerNameLabl.text = player.player_name
-            cell.playerAgeLabel.text = player.player_age
-            cell.playerNumberLabel.text = player.player_number
-            cell.playerPositionLabel.text = player.player_type
-
-            cell.playerImg.kf.setImage(with: URL(string: player.player_image ?? "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/EA_Sports_monochrome_logo.svg/2048px-EA_Sports_monochrome_logo.svg.png"))
-        }
+        
+        if sportName == "football" {
+                   if let player = viewModel.teams?.players?[indexPath.row] {
+                       cell.playerNameLabl.text = player.player_name
+                       cell.playerAgeLabel.text = player.player_age
+                       cell.playerNumberLabel.text = player.player_number
+                       cell.playerPositionLabel.text = player.player_type
+                       cell.playerImg.kf.setImage(with: URL(string: player.player_image ?? "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/EA_Sports_monochrome_logo.svg/2048px-EA_Sports_monochrome_logo.svg.png"))
+                   }
+               } else if sportName == "tennis" {
+                   cell.playerNameLabl.text = viewModel.player?.player_name
+                   if let playerKey = viewModel.player?.player_key {
+                       cell.playerAgeLabel.text = "\(playerKey)"
+                   } else {
+                       cell.playerAgeLabel.text = "" 
+                   }
+                   cell.playerNumberLabel.text = ""
+                   cell.playerPositionLabel.text = ""
+                   cell.playerImg.kf.setImage(with: URL(string: "https://static.vecteezy.com/system/resources/previews/026/367/777/original/tennis-player-cartoon-tennis-player-in-action-and-motion-vektor-illustration-vector.jpg"))
+               }
+        
+        
+//        if let player = viewModel.teams?.players?[indexPath.row]{
+//            
+//            cell.playerNameLabl.text = player.player_name
+//            cell.playerAgeLabel.text = player.player_age
+//            cell.playerNumberLabel.text = player.player_number
+//            cell.playerPositionLabel.text = player.player_type
+//
+//            cell.playerImg.kf.setImage(with: URL(string: player.player_image ?? "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/EA_Sports_monochrome_logo.svg/2048px-EA_Sports_monochrome_logo.svg.png"))
+//        }
         
         return cell
     }

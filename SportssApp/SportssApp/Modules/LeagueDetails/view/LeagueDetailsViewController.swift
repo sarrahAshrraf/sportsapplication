@@ -341,29 +341,28 @@ extension LeagueDetailsViewController{
     cell.contentView.layer.cornerRadius = 16
   }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("========Debuuuuuug \(indexPath.section)")
-
-         let upcomingEventsCount = viewModel.resultUpComingEvents?.count
-        print("========Debuuuuuug \(upcomingEventsCount)")
-        if (upcomingEventsCount == 0 || upcomingEventsCount == nil && indexPath.section == 1) || (upcomingEventsCount != 0 && indexPath.section == 2) {
-            
-            
+        let upcomingEventsCount = viewModel.resultUpComingEvents?.count ?? 0
+        if (upcomingEventsCount == 0 && indexPath.section == 1) || (upcomingEventsCount != 0 && indexPath.section == 2) {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let teamVC = storyboard.instantiateViewController(identifier: "TeamVC") as? TeamDetailsViewController else {
                 return
             }
-            
             teamVC.sportName = sportName
             
-            if let teamKey = viewModel.teams?[indexPath.row].team_key {
-                teamVC.teamId = teamKey
-//                let navigationController = UINavigationController(rootViewController: teamVC)
-//                teamVC.modalPresentationStyle = .fullScreen
-                 present(teamVC, animated: true, completion: nil)
-//                navigationController?.pushViewController(teamVC, animated: true)
+            if sportName == "football" {
+                if let teamKey = viewModel.teams?[indexPath.row].team_key {
+                    teamVC.teamId = teamKey
+                }
+            } else if sportName == "tennis" {
+                if let playerID = viewModel.players?[indexPath.row].player_key {
+                    teamVC.playerID = playerID
+                }
             }
+            
+            present(teamVC, animated: true, completion: nil)
         }
     }
+
     
 //    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 //      let eventCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpComingEventsCell", for: indexPath) as! UpComingEventsCell
