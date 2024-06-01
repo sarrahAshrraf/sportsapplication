@@ -7,7 +7,7 @@
 
 import Foundation
 class Constants{
-    static let apiKey = "995239db0133e854b94ff543d0f5c1e93a86c6ee8d60df34e502c87e932bbb6d"
+    static let apiKey = "959d4102f918e5ca96058a64938e54c07883cbfef2dbbfd7688e232fe8f0042a"
        
     
 }

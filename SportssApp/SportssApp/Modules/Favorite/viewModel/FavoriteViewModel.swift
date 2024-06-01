@@ -8,43 +8,44 @@
 import Foundation
 import CoreData
 
+
+struct LeagueSection {
+    let sportName: String
+    var leagues: [LeagueEntity]
+}
+
 class FavoriteLeaguesViewModel {
 
     let databaseManager = DatabaseManager.shared
     var binddbToViewController: (() -> ()) = {}
-    var allLeagues: [LeagueEntity] = []
+    var leagueSections: [LeagueSection] = []
 
     func fetchAllLeagues() {
-        allLeagues = databaseManager.fetchAllLeagues()
+        let allLeagues = databaseManager.fetchAllLeagues()
+        let groupedLeagues = Dictionary(grouping: allLeagues, by: { $0.sportName })
+        leagueSections = groupedLeagues.map { LeagueSection(sportName: $0.key ?? "", leagues: $0.value) }
     }
 
     func deleteLeague(leagueId: Int) {
         databaseManager.deleteLeague(leagueId: leagueId)
+        fetchAllLeagues()
     }
 
-    func uniqueSportCount() -> Int {
-        return databaseManager.countUniqueSportNames()
+    func numberOfSections() -> Int {
+        return leagueSections.count
     }
 
-    func leaguesCount(for section: Int) -> Int {
-        let sportName = sportName(for: section)
-        return allLeagues.filter { $0.sportName == sportName }.count
+    func numberOfLeagues(inSection section: Int) -> Int {
+        return leagueSections[section].leagues.count
     }
 
     func league(at indexPath: IndexPath) -> LeagueEntity {
-        let sportName = sportName(for: indexPath.section)
-        return allLeagues.filter { $0.sportName == sportName }[indexPath.row]
+        return leagueSections[indexPath.section].leagues[indexPath.row]
     }
 
-    func sportName(for section: Int) -> String {
-        let uniqueSports = Set(allLeagues.compactMap { $0.sportName })
-        let sortedUniqueSports = Array(uniqueSports.sorted())
-
-        guard section >= 0 && section < sortedUniqueSports.count else {
-            return ""
-        }
-
-        return sortedUniqueSports[section]
+    func sportName(forSection section: Int) -> String {
+        return leagueSections[section].sportName
     }
 }
+
 
