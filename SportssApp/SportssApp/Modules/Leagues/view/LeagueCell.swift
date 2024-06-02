@@ -11,8 +11,15 @@ class LeagueCell: UITableViewCell {
 
     @IBOutlet weak var leagueImg: UIImageView!
     @IBOutlet weak var leagueLabel: UILabel!
+    var youtubeAction : ()->() = {}
+
+    @IBAction func youTubBtn(_ sender: UIButton) {
+        self.youtubeAction()
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
+        leagueImg.layer.cornerRadius = leagueImg.frame.size.width / 2
+               leagueImg.clipsToBounds = true
         // Initialization code
     }
 

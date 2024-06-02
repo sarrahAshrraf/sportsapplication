@@ -17,4 +17,8 @@ class HomeViewModel{
 
 
     ]
+    
+    func checkInternetConnectivity()->Bool{
+        return Connectivity.connectivityInstance.isConnectedToInternet()
+    }
 }

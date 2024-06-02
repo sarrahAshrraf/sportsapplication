@@ -9,7 +9,6 @@ import UIKit
 import Kingfisher
 import Alamofire
 class AllLeaguesTableViewController: UITableViewController {
-    
     //leagueCell
     var viewModel : LeagueViewModel!
     var sportName:String = ""
@@ -17,12 +16,14 @@ class AllLeaguesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(sportName)
+        self.title = "\(sportName)"
+
         let cell = UINib(nibName: "LeagueCell", bundle: nil)
         tableView.register(cell, forCellReuseIdentifier: "LeagueCell")
         tableView.backgroundColor = UIColor.systemGray6
         viewModel = LeagueViewModel()
         
-        viewModel.getData(sportName: sportName ) //TODO indexPath colelction
+        viewModel.getData(sportName: sportName )
         print(viewModel.getData(sportName: sportName ))
         viewModel.bindResultToViewController = { [weak self] in
             
@@ -50,15 +51,25 @@ class AllLeaguesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeagueCell", for: indexPath) as! LeagueCell
         if let league = viewModel.result?[indexPath.row] {
-            cell.leagueLabel?.text = league.leagueName
-            if let logoURL = league.leagueLogo, logoURL.hasSuffix(".png") {
+            cell.leagueLabel?.text = league.league_name
+            if let logoURL = league.league_logo, logoURL.hasSuffix(".png") {
                 if let url = URL(string: logoURL) {
                     cell.leagueImg.kf.setImage(with: url)
                 } else {
-                    cell.leagueImg.image = UIImage(named: "torphy")
+                    cell.leagueImg.image = UIImage(named: "tor")
                 }
             } else {
-                cell.leagueImg.image = UIImage(named: "torphy")
+                cell.leagueImg.image = UIImage(named: "tor")
+            }
+            
+            
+            cell.youtubeAction = { [weak self] in
+                let alert = UIAlertController(title: "No youTube Found", message: "There is no youtube for this league", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(okAction)
+                self?.present(alert, animated: true, completion: nil)
+               
+                
             }
             
         }
@@ -76,19 +87,31 @@ class AllLeaguesTableViewController: UITableViewController {
     //        webViewController.youtubeUrl = urlString
     //        self.navigationController?.pushViewController(webViewController, animated: true)
     //    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let leagueDetailsVC = storyboard.instantiateViewController(withIdentifier: "leagueDetailsVC") as! LeagueDetailsViewController
-//        leagueDetailsVC.title = "Leagues Details"
-//        leagueDetailsVC.sportName = self.sportName
-//        leagueDetailsVC.leagueId = (viewModel.result?[indexPath.row].leagueKey)!
-//        leagueDetailsVC.leagueName = (viewModel.result?[indexPath.row].leagueName)!
-//        leagueDetailsVC.leagueImage = viewModel.result?[indexPath.row].leagueLogo ?? ""
-//        navigationController?.pushViewController(leagueDetailsVC, animated: true)
-        //        let leagueDetailsVC = self.storyboard?.instantiateViewController(identifier: "LeaguDVC") as! DetailsOfLeagueViewController
-        
-        //        self.present(leagueDetailsVC, animated: true)
-        
+        let storyboard = UIStoryboard(name: "ScreensStoryBoard", bundle: nil)
+        if let leagueDetailsVC = storyboard.instantiateViewController(withIdentifier: "leagueDetailsVC") as? LeagueDetailsViewController {
+            if viewModel.checkInternetConnectivity(){
+                
+                leagueDetailsVC.sportName = self.sportName
+                leagueDetailsVC.leagueId = viewModel.result?[indexPath.row].league_key ?? 0
+                leagueDetailsVC.leagueName = viewModel.result?[indexPath.row].league_name ?? ""
+                leagueDetailsVC.leagueImage = viewModel.result?[indexPath.row].league_logo ?? ""
+                let navigationController = UINavigationController(rootViewController: leagueDetailsVC)
+                
+                leagueDetailsVC.modalPresentationStyle = .fullScreen
+                present(navigationController, animated: true, completion: nil)
+                //            navigationController?.pushViewController(leagueDetailsVC, animated: true)
+                print(viewModel.result?[indexPath.row].league_key ?? 0) //10887 tennis
+            }else {
+                let alert = UIAlertController(title: "No Internet Connection", message: "You must connect to the internet to see the Leagues", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(okAction)
+                present(alert, animated: true, completion: nil)
+                
+            }
+        }
     }
+
+
 }

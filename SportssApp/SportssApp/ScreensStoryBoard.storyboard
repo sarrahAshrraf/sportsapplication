@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7IO-YL-saO">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -11,77 +12,57 @@
         <!--League Details View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="LeagueDetailsViewController" customModule="SportssApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="leagueDetailsVC" id="Y6W-OH-hqX" customClass="LeagueDetailsViewController" customModule="SportssApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vEZ-hh-uU0">
-                                <rect key="frame" x="0.0" y="72" width="393" height="44"/>
-                                <items>
-                                    <navigationItem title="League Details" id="KLd-Ki-kW9">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="QII-XO-Iwm">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Jpf-Oo-ahH">
-                                                <rect key="frame" x="16" y="5" width="87" height="34.333333333333336"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="arrowshape.backward.fill" catalog="system"/>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="45F-D4-50h">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="vWo-Kb-YMG">
-                                                <rect key="frame" x="290" y="5" width="87" height="34.333333333333336"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HV0-gg-Uc8">
-                                <rect key="frame" x="0.0" y="116" width="393" height="702"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HV0-gg-Uc8">
+                                <rect key="frame" x="0.0" y="98" width="393" height="720"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LbS-xf-Mtb">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
-                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="TkA-uM-Ufj" customClass="HeaderCell" customModule="SportssApp" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XlX-H9-pWV">
-                                            <rect key="frame" x="8" y="15" width="307" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="XlX-H9-pWV" firstAttribute="top" secondItem="TkA-uM-Ufj" secondAttribute="topMargin" constant="7" id="LYf-3C-DBO"/>
-                                        <constraint firstItem="XlX-H9-pWV" firstAttribute="leading" secondItem="TkA-uM-Ufj" secondAttribute="leadingMargin" id="Z4L-cy-3CG"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="XlX-H9-pWV" secondAttribute="trailing" constant="70" id="dzV-XC-Lb6"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="XlX-H9-pWV" secondAttribute="bottom" constant="6" id="qYs-As-7HP"/>
-                                    </constraints>
-                                    <connections>
-                                        <outlet property="headerTitle" destination="XlX-H9-pWV" id="b6f-cr-5WG"/>
-                                    </connections>
-                                </collectionReusableView>
                             </collectionView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RiL-t9-hHQ">
+                                <rect key="frame" x="0.0" y="48" width="393" height="44"/>
+                                <items>
+                                    <navigationItem title="League Details" id="buQ-ze-aNJ">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.left" catalog="system" id="niB-c3-7sn">
+                                            <connections>
+                                                <action selector="backButton:" destination="Y6W-OH-hqX" id="zQA-3q-z8D"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" image="heart" catalog="system" id="QoN-Q5-sfl">
+                                            <connections>
+                                                <action selector="favoriteButton:" destination="Y6W-OH-hqX" id="u1J-54-h0O"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="vEZ-hh-uU0" secondAttribute="bottom" constant="702" id="2xU-a1-WeR"/>
-                            <constraint firstItem="vEZ-hh-uU0" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="13" id="Cli-LL-ijj"/>
-                            <constraint firstItem="vEZ-hh-uU0" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="T7G-JL-gQD"/>
-                            <constraint firstItem="vEZ-hh-uU0" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="iHy-aU-8Mu"/>
+                            <constraint firstItem="HV0-gg-Uc8" firstAttribute="top" secondItem="RiL-t9-hHQ" secondAttribute="bottom" constant="6" id="QUu-Bx-Lu4"/>
+                            <constraint firstItem="HV0-gg-Uc8" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="topMargin" constant="39" id="a6O-uT-8xb"/>
+                            <constraint firstItem="RiL-t9-hHQ" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="48" id="dBO-RK-eR8"/>
+                            <constraint firstItem="RiL-t9-hHQ" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="ing-LR-lrN"/>
+                            <constraint firstItem="HV0-gg-Uc8" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="lgC-gB-zLC"/>
+                            <constraint firstItem="HV0-gg-Uc8" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="rCl-70-hES"/>
+                            <constraint firstItem="HV0-gg-Uc8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="u8S-nY-QGK"/>
+                            <constraint firstItem="RiL-t9-hHQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="zjW-3r-DsR"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="favoriteBtn" destination="QoN-Q5-sfl" id="82R-bQ-Z34"/>
+                        <outlet property="leaguesCollectionView" destination="HV0-gg-Uc8" id="Fyv-P5-7Z8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -117,7 +98,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrowshape.backward.fill" catalog="system" width="128" height="104"/>
+        <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

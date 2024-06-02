@@ -9,7 +9,6 @@ import Foundation
 import CoreData
 import UIKit
 
-
 class DatabaseManager {
     static let shared = DatabaseManager()
     
@@ -62,32 +61,77 @@ class DatabaseManager {
         saveContext()
     }
     
-    func fetchLeagues() -> [LeagueEntity]? {
-        let context = persistentContainer.viewContext
-        let fetchRequest: NSFetchRequest<LeagueEntity> = LeagueEntity.fetchRequest()
-        do {
-            let leagues = try context.fetch(fetchRequest)
-            printFetchedLeagues(leagues: leagues)
-            return leagues
-        } catch {
-            print("Failed to fetch leagues: \(error)")
-            return nil
-        }
-    }
-    
-    private func printFetchedLeagues(leagues: [LeagueEntity]) {
-        for league in leagues {
-            print("League ID: \(league.leagueId)")
-            print("League Name: \(league.leagueName ?? "No name")")
-            print("League Image: \(league.leagueImg ?? "No image")")
-            print("Sport Name: \(league.sportName ?? "No sport name")")
-            print("---------")
-        }
-    }
     
     func deleteLeague(league: LeagueEntity) {
         let context = persistentContainer.viewContext
         context.delete(league)
         saveContext()
     }
+    
+ 
+    func fetchAllLeagues() -> [LeagueEntity] {
+        let context = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<LeagueEntity> = LeagueEntity.fetchRequest()
+        
+        do {
+            let leagues = try context.fetch(fetchRequest)
+            print(leagues.count)
+            return leagues
+        } catch {
+            print("Failed to fetch leagues: \(error)")
+            return []
+        }
+    }
+    
+    
+    func deleteLeague(leagueId: Int) {
+        let context = persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<LeagueEntity> = LeagueEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "leagueId == %d", leagueId)
+        
+        do {
+            let leagues = try context.fetch(fetchRequest)
+            if let leagueToDelete = leagues.first {
+                context.delete(leagueToDelete)
+                saveContext()
+            } else {
+                print("No league found with ID \(leagueId)")
+            }
+        } catch {
+            print("Failed to fetch or delete league: \(error)")
+        }
+    }
+    
+    func isLeagueFavorite(leagueId: Int) -> Bool {
+        let context = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<LeagueEntity> = LeagueEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "leagueId == %d", leagueId)
+        
+        do {
+            let leagues = try context.fetch(fetchRequest)
+            return !leagues.isEmpty
+        } catch {
+            print("Failed to fetch league: \(error)")
+            return false
+        }
+    }
+    
+    func countUniqueSportNames() -> Int {
+         let context = persistentContainer.viewContext
+         let fetchRequest = NSFetchRequest<NSDictionary>(entityName: "LeagueEntity")
+         fetchRequest.resultType = .dictionaryResultType
+         fetchRequest.propertiesToFetch = ["sportName"]
+         fetchRequest.returnsDistinctResults = true
+
+         do {
+             let results = try context.fetch(fetchRequest)
+             return results.count
+         } catch {
+             print("Failed to fetch unique sport names: \(error)")
+             return 0
+         }
+    } 
+    
+
 }

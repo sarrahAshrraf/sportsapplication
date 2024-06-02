@@ -9,8 +9,10 @@
 //
 
 import UIKit
+import Reachability
 
 class SportsViewController: UIViewController,UICollectionViewDelegate , UICollectionViewDataSource {
+//    let reachability = try! Reachability()
 
    
     @IBOutlet weak var homeCollectionView: UICollectionView!
@@ -23,7 +25,17 @@ class SportsViewController: UIViewController,UICollectionViewDelegate , UICollec
         homeCollectionView.dataSource = self
               homeCollectionView.delegate = self
         homeCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
+//        try? reachability.startNotifier()
+
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+//        try? reachability.startNotifier()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        reachability.stopNotifier()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -54,11 +66,30 @@ extension SportsViewController: UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedSport = viewModel!.sports[indexPath.item]
-        
-        let leaguesVC = AllLeaguesTableViewController()
-        leaguesVC.sportName = selectedSport.sportName.lowercased()
-        print(selectedSport.sportName)
-        navigationController?.pushViewController(leaguesVC, animated: true)
+
+        if viewModel!.checkInternetConnectivity(){
+
+            let leaguesVC = AllLeaguesTableViewController()
+            var sportName = selectedSport.sportName.lowercased()
+            leaguesVC.sportName = selectedSport.sportName.lowercased()
+            print(selectedSport.sportName)
+            switch sportName {
+            case "criket" :
+                let alert = UIAlertController(title: "No Data", message: "There is no data to show now, try again later.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                present(alert, animated: true)
+            default:
+                navigationController?.pushViewController(leaguesVC, animated: true)
+            }
+        } else {
+            showAlertNoNetwork()
+        }
+    }
+    
+    func showAlertNoNetwork() {
+        let alert = UIAlertController(title: "No Network", message: "Please check your internet connection and try again.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }
 

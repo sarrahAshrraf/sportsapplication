@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,34 +17,39 @@
                 <rect key="frame" x="0.0" y="0.0" width="401" height="81"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uSE-fg-DDQ">
-                        <rect key="frame" x="0.0" y="0.0" width="109" height="81"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVX-E4-DTq">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVX-E4-DTq">
                         <rect key="frame" x="117" y="30" width="238" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1J-po-2yl">
-                        <rect key="frame" x="363" y="22" width="35" height="35"/>
+                        <rect key="frame" x="359" y="22" width="39" height="35"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title="&gt;"/>
+                        <buttonConfiguration key="configuration" style="plain">
+                            <backgroundConfiguration key="background" image="You-Tube-14"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="youTubBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="zAW-6l-OH9"/>
+                        </connections>
                     </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uSE-fg-DDQ">
+                        <rect key="frame" x="7" y="4" width="95" height="70"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="XVX-E4-DTq" secondAttribute="trailing" constant="46" id="5o4-FW-kFp"/>
-                    <constraint firstItem="uSE-fg-DDQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6tb-ra-mEs"/>
+                    <constraint firstItem="uSE-fg-DDQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="6tb-ra-mEs"/>
                     <constraint firstAttribute="trailing" secondItem="H1J-po-2yl" secondAttribute="trailing" constant="3" id="75l-OK-cKs"/>
                     <constraint firstAttribute="bottom" secondItem="H1J-po-2yl" secondAttribute="bottom" constant="24" id="9ky-8g-Jnp"/>
                     <constraint firstItem="XVX-E4-DTq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="I01-bg-ldm"/>
                     <constraint firstAttribute="bottom" secondItem="XVX-E4-DTq" secondAttribute="bottom" constant="30" id="JOw-5u-VHE"/>
-                    <constraint firstItem="XVX-E4-DTq" firstAttribute="leading" secondItem="uSE-fg-DDQ" secondAttribute="trailing" constant="8" symbolic="YES" id="KhR-Zf-cNm"/>
-                    <constraint firstAttribute="trailing" secondItem="uSE-fg-DDQ" secondAttribute="trailing" constant="292" id="P2F-FK-0DU"/>
-                    <constraint firstItem="uSE-fg-DDQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="qgA-Gh-Cn7"/>
+                    <constraint firstItem="XVX-E4-DTq" firstAttribute="leading" secondItem="uSE-fg-DDQ" secondAttribute="trailing" constant="15" id="KhR-Zf-cNm"/>
+                    <constraint firstAttribute="trailing" secondItem="uSE-fg-DDQ" secondAttribute="trailing" constant="299" id="P2F-FK-0DU"/>
+                    <constraint firstItem="uSE-fg-DDQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="qgA-Gh-Cn7"/>
                     <constraint firstItem="H1J-po-2yl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="22" id="veO-1b-zf7"/>
-                    <constraint firstAttribute="bottom" secondItem="uSE-fg-DDQ" secondAttribute="bottom" id="wHJ-GP-7b4"/>
-                    <constraint firstItem="H1J-po-2yl" firstAttribute="leading" secondItem="XVX-E4-DTq" secondAttribute="trailing" constant="8" symbolic="YES" id="zK7-rW-UGU"/>
+                    <constraint firstAttribute="bottom" secondItem="uSE-fg-DDQ" secondAttribute="bottom" constant="7" id="wHJ-GP-7b4"/>
+                    <constraint firstItem="H1J-po-2yl" firstAttribute="leading" secondItem="XVX-E4-DTq" secondAttribute="trailing" constant="4" id="zK7-rW-UGU"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -51,7 +57,10 @@
                 <outlet property="leagueImg" destination="uSE-fg-DDQ" id="XhY-B3-36g"/>
                 <outlet property="leagueLabel" destination="XVX-E4-DTq" id="WNV-lV-uzG"/>
             </connections>
-            <point key="canvasLocation" x="147.32824427480915" y="1.7605633802816902"/>
+            <point key="canvasLocation" x="147.10144927536234" y="1.6741071428571428"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="You-Tube-14" width="736" height="736"/>
+    </resources>
 </document>
